@@ -27,7 +27,7 @@ if(!empty($_POST)){
 	}
 
 	if(count($errors) === 0){
-		$select = $bdd->prepare('SELECT * FROM users WHERE username = :username');
+		$select = $bdd->prepare('SELECT * FROM lbb_users WHERE username = :username');
 		$select->bindValue(':username', $post['username']);
 
 		if($select->execute()){
