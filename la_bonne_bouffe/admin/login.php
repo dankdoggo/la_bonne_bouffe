@@ -5,6 +5,11 @@ session_start();
 require_once '../inc/connect.php';
 require_once '../inc/functions.php';
 
+$post = [];
+$errors = [];
+$hasError = false;
+$formValid = false;
+
 if(!empty($_POST)){
 
 	//Nettoyage du donnée
