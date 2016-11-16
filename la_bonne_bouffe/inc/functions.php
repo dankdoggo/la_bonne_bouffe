@@ -27,19 +27,19 @@ function minAndMaxLength($str, $min = 2, $max = 255){
 
 
 /** 
- * Vérifie l'existence d'une adresse email
- * @param string $email L'adresse email qu'on souhaite vérifier
+ * Vérifie l'existence d'un pseudo
+ * @param string $username le pseudo qu'on souhaite vérifier
  * @param obj $bdd La connexion à PDO
  * @return bool TRUE si l'email existe, false sinon
  */
-function emailExist($email, $bdd){
+function usernameExist($username, $bdd){
 
-	// On vérifie que $email & $bdd ne soient pas vides
-	if(!empty($email) && !empty($bdd)){
+	// On vérifie que $username & $bdd ne soient pas vides
+	if(!empty($username) && !empty($bdd)){
 
 		// On effectue la requete
-		$check = $bdd->prepare('SELECT * FROM users WHERE email = :email');
-		$check->bindValue(':email', $email);
+		$check = $bdd->prepare('SELECT * FROM lbb_users WHERE username = :username');
+		$check->bindValue(':username', $username);
 		if($check->execute()){
 			if($check->fetchColumn() > 0){
 				return true;
