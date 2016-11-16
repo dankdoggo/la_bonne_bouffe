@@ -72,7 +72,7 @@ if(!empty($_POST)){
 <body>
 	<?php
 		if($hasError){
-			echo '<p class="alert alert-danger">'.implode('<br>', $errors).'</p>';
+			echo '<p class="alert alert-danger text-center">'.implode('<br>', $errors).'</p>';
 		}
 	?>
 	<!-- Formulaire de connexion -->
