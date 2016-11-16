@@ -27,7 +27,7 @@ function minAndMaxLength($str, $min = 2, $max = 255){
 
 
 /** 
- * Vérifie l'existence d'une adresse email
+ * Vérifie l'existence d'un pseudo
  * @param string $username le pseudo qu'on souhaite vérifier
  * @param obj $bdd La connexion à PDO
  * @return bool TRUE si l'email existe, false sinon
