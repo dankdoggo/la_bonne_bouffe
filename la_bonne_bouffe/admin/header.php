@@ -1,22 +1,13 @@
-
-	<div id=navbar>
-		<ul id="links">
-		<?php
-		if(empty($_SESSION)){
-			echo '<li><a href="index.php">Connexion</a></li>';
-			echo '<li><a href="add_user.php">Join US!</a></li>';
-	}	
-		else{
-
-			echo '<li><a href="logout.php">Deconnexion</a></li>';
-	}
-		?>
-		
-		<li><a href="list_users.php">Liste d'utilisateur</a></li>
-		<li><a href="my_profile.php">Mon Profils</a></li>
-		<li><a href="add_recipe.php">Ajouté une recette</a></li>
-		
-		</ul>
-
-
-	</div>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+    	<a class="navbar-brand" href="my_profile.php">Mon Profils</a></li>
+      	<a class="navbar-brand" href="add_user.php">Ajouté un utilisateur</a>
+		<a class="navbar-brand" href="list_users.php">Liste d'utilisateur</a>
+		<a class="navbar-brand" href="add_recipe.php">Ajouté une recette</a>
+		<a class="navbar-brand" href="../list_recipes.php">Liste des recette</a>
+		<a class="navbar-brand" href="edit_header.php">&Eacute;dition page d'accueil</a>
+    </div>
+  </div>
+</nav>
+	
