@@ -1,5 +1,3 @@
-<?php
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +11,7 @@
 
 	<!-- Formulaire permettant d'éditer le header -->
 	<div class="col-sm-6 col-sm-push-3">
-		<h4 class="text-center text-danger">Veuillez uploader des images ne dépassant pas 235px </h4>
+		<h4 class="text-center text-danger">Veuillez uploader des images ne dépassant pas 250px </h4>
 		<form method="post" enctype="multipart/form-data">
 			<label for="slider1">Première image</label><br>
 			<input type="file" name="slider1" id="slider1">

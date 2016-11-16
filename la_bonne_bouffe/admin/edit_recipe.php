@@ -1,14 +1,3 @@
-<?php
-
-
-
-
-
-
-?>
-
-
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -20,7 +9,7 @@
 	<body>
 		<main class="container">
 
-			<h1 class="text-center text-info">Mettre a jour la Recette</h1>
+			<h1 class="text-center text-info">Mettre à jour la Recette</h1>
 			
 			<div class="col-sm-6 col-sm-push-3">
 				<form method="post">
