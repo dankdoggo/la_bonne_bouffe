@@ -3,7 +3,7 @@
 		<ul id="links">
 		<?php
 		if(empty($_SESSION)){
-			echo '<li><a href="login.php">Connexion</a></li>';
+			echo '<li><a href="index.php">Connexion</a></li>';
 			echo '<li><a href="add_user.php">Join US!</a></li>';
 	}	
 		else{
@@ -13,8 +13,8 @@
 		?>
 		
 		<li><a href="list_users.php">Liste d'utilisateur</a></li>
-		<li><a href="view_user.php">Mon Profils</a></li>
-		<li><a href="list_users.php">Liste d'utilisateur</a></li>
+		<li><a href="my_profile.php">Mon Profils</a></li>
+		<li><a href="add_recipe.php">Ajouté une recette</a></li>
 		
 		</ul>
 

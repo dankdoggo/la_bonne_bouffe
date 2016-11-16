@@ -74,16 +74,16 @@ if(!empty($_POST)){
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
 <body>
-<<<<<<< HEAD
+
 	<?php include 'header.php'; ?>
 
-=======
+
 	<?php
 		if($hasError){
 			echo '<p class="alert alert-danger text-center">'.implode('<br>', $errors).'</p>';
 		}
 	?>
->>>>>>> 5eee2a01f28fd3f3bb93dfd70c6bacebf6025823
+
 	<!-- Formulaire de connexion -->
 	<div class="col-sm-6 col-sm-push-3">
 		<h1 class="text-center text-info">Se connecter</h1>
