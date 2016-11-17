@@ -104,26 +104,7 @@ if(!empty($_POST)) {
     	$errors[] = 'Le numéro de téléphone doit comporter 10 chiffres';
     }
 
-    if (isset($errors) && count($errors) == 0) {
-
-       // s'il n'y a pas d'erreur on peut insérer les données dans la base de données
-       $insert = $bdd->prepare('INSERT INTO users (firstname, lastname, email, password, birthdate, picture) VALUES (:firstname_register, :lastname_register, :email_register, :password_register, :birthdate, :picture_register)');
-       
-       $insert->bindValue(':firstname_register', $post['firstname_register']); 
-       $insert->bindValue(':lastname_register', $post['lastname_register']);
-       $insert->bindValue(':email_register', $post['email_register']);
-       $insert->bindValue(':password_register', password_hash($post['password_register'], PASSWORD_DEFAULT));
-       $insert->bindValue(':birthdate', $post['birth_year'].'-'.$post['birth_month'].'-'.$post['birth_day']);
-       $insert->bindValue(':picture_register', $dirUpload.$pictureName);
-
-       if ($insert->execute()) {
-           $registerValid = true;
-       }
-       else {
-            var_dump($insert->errorInfo());
-        }
-
-   } // end of $errors == 0
+   
    
 
 } // end of if !empty $_POST
@@ -153,6 +134,14 @@ if(!empty($_POST)) {
 
 			<h2 style="font-size: 1.4em;">Edition des images défilantes de l'accueil</h2>
 
+				<?php if(count($errors) > 0) : ?>
+
+                        <div class="alert alert-danger">
+                             <?php echo implode('<br>', $errors); ?>
+                        </div>
+                                              
+                <?php endif; ?>
+
 				<form method="post" enctype="multipart/form-data">
 					<input type="hidden" name="action" value="formulaire_1">
 					<label for="slider1">Image 1</label><br>
@@ -177,6 +166,32 @@ if(!empty($_POST)) {
 
 				<h2 style="font-size: 1.4em;">Images du slider</h2>	
 
+
+
+
+        		<?php 
+        			$checkImg = $bdd->prepare('SELECT value FROM lbb_edit_home WHERE data LIKE "slide%"'); 
+                    if($checkImg->execute()):
+                        $sliders = $checkImg->fetchAll(PDO::FETCH_ASSOC);
+                        $nbSliders = empty($sliders);
+                       // $nbSliders = count($sliders);
+
+        			    if($nbSliders === false): 
+                ?>
+        					<div>
+								<p class="text-center alert alert-danger">Vous n'avez pas encore téléchargé d'images </p>
+							</div>
+        				
+                        <?php else : ?>
+
+                            <div>
+                                <p class="text-center">Ah ouias </p> <!-- ca ne amrche -->
+                            </div>
+
+        				<?php endif; ?> <!-- // faire un else -->
+
+        			<?php endif; ?>
+
 			</div>
 
 		</div>	
@@ -192,6 +207,10 @@ if(!empty($_POST)) {
 			<form method="post">
 				<input type="hidden" name="action" value="formulaire_2">
 
+                <label for="name-resto">Nom du resto</label><br>
+                <input type="text" id="name-resto" name="name-resto" class="form-control" placeholder="La bonne bouffe">
+
+                <br>
 				<label for="address">Adresse</label><br>
 				<input type="text" id="address" name="address" class="form-control" placeholder="Rue de la Gastro">
 
