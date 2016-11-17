@@ -13,7 +13,7 @@
 
 		 	<div class="col-sm-6 col-sm-push-3">
 
-				<h1>Modifier un compte utlisateur</h1>
+				<h1 text-center text-info>Modifier un compte utlisateur</h1>
 
 				<form method="post">
 					
