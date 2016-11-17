@@ -51,7 +51,7 @@
 	        	<section id="section-slider">
 
 	        		<div class="bloc-slider center-block">
-	        			<img class="img-slider" src="img/resto.jpg">
+	        			<img class="img-slider" src="uploads/resto.jpg">
 	        		</div>
 
 	        	</section>

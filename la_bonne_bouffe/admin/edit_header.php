@@ -7,7 +7,7 @@ require_once '../inc/functions.php';
 $errors = [];
 $post = [];
 $mimeTypeAllow = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'];
-$dirUpload = '../uploads';
+$dirUpload = '../uploads_slider';
 
 if(!empty($_POST)) {
 
@@ -31,11 +31,11 @@ if(!empty($_POST)) {
             }
 
             if(!move_uploaded_file($_FILES['slider1']['tmp_name'], $dirUpload.$pictureName)){ //move uploaded file permet permet de télécharger le fichier
-                $errors[] = 'Erreur lors de l\'envoi de la première image';
+                $errors[] = 'Erreur lors de l\'envoi de image 1';
             }
         }
         else {
-            $errors[] = 'Le type de fichier de la première image est invalide. Uniquement jpg/jpeg/gif/png.'; 
+            $errors[] = 'Le type de fichier de image 1 est invalide. Uniquement jpg/jpeg/gif/png.'; 
         }
 	}
 
@@ -55,11 +55,11 @@ if(!empty($_POST)) {
             }
 
             if(!move_uploaded_file($_FILES['slider2']['tmp_name'], $dirUpload.$pictureName)){ //move uploaded file permet permet de télécharger le fichier
-                $errors[] = 'Erreur lors de l\'envoi de la deuxième image';
+                $errors[] = 'Erreur lors de l\'envoi de image 2';
             }
         }
         else {
-            $errors[] = 'Le type de fichier de la deuxième image est invalide. Uniquement jpg/jpeg/gif/png.'; 
+            $errors[] = 'Le type de fichier de image 2 est invalide. Uniquement jpg/jpeg/gif/png.'; 
         }
 	}
 
@@ -79,11 +79,11 @@ if(!empty($_POST)) {
             }
 
             if(!move_uploaded_file($_FILES['slider3']['tmp_name'], $dirUpload.$pictureName)){ //move uploaded file permet permet de télécharger le fichier
-                $errors[] = 'Erreur lors de l\'envoi de la troisième image';
+                $errors[] = 'Erreur lors de l\'envoi de image 3';
             }
         }
         else {
-            $errors[] = 'Le type de fichier de la troisième image est invalide. Uniquement jpg/jpeg/gif/png.'; 
+            $errors[] = 'Le type de fichier de image 3 est invalide. Uniquement jpg/jpeg/gif/png.'; 
         }
 	}
 
@@ -142,47 +142,77 @@ if(!empty($_POST)) {
 <body>
 <?php include 'header.php'; ?>
 
-<h1 class="text-center"> Editer le slider et les coordonnées</h1>
+<h1 class="text-center text-info"> Editer le slider et les coordonnées</h1>
 
-	<!-- Formulaire permettant d'éditer le header -->
-	<div class="col-sm-6 col-sm-push-3">
-		<h2>Edition des images défilantes de l'accueil</h2>
-		<p class="text-left text-danger">Veuillez uploader des images ne dépassant pas 250px </p>
-		<form method="post" enctype="multipart/form-data">
-			<label for="slider1">Première image</label><br>
-			<input type="file" name="slider1" id="slider1">
 
-			<br>
-			<label for="slider2">Deuxième image</label><br>
-			<input type="file" name="slider2" id="slider2">
+	<div class="container">
 
-			<br>
-			<label for="slider3">Troisième image</label><br>
-			<input type="file" name="slider3" id="slider3">
+		<div class="row">
 
-			<br>
-			<hr>
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 
-			<br>
-			<label for="address">Adresse postale</label><br>
-			<input type="text" id="address" name="address" class="form-control">
+			<h2 style="font-size: 1.4em;">Edition des images défilantes de l'accueil</h2>
 
-			<br>
-			<label for="zipcode">Code postal</label><br>
-			<input type="text" id="zipcode" name="zipcode" class="form-control">
+				<form method="post" enctype="multipart/form-data">
+					<input type="hidden" name="action" value="formulaire_1">
+					<label for="slider1">Image 1</label><br>
+					<input type="file" name="slider1" id="slider1">
 
-			<br>
-			<label for="city">Ville</label><br>
-			<input type="text" id="city" name="city" class="form-control">
+					<br>
+					<label for="slider2">Image 2</label><br>
+					<input type="file" name="slider2" id="slider2">
 
-			<br>
-			<label for="phone">Téléphone</label><br>
-			<input type="text" id="phone" name="phone" class="form-control">
+					<br>
+					<label for="slider3">Image 3</label><br>
+					<input type="file" name="slider3" id="slider3">
 
-			<br>
-			<input type="submit" value="Editer" class="btn btn-primary">
-			
-		</form>
+					<br>
+					<p class="text-left text-danger">Veuillez uploader des images ne dépassant pas 250px </p>
+					<input type="submit" value="Editer les images" class="btn btn-primary">
+				</form>
+
+			</div>
+
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+				<h2 style="font-size: 1.4em;">Images du slider</h2>	
+
+			</div>
+
+		</div>	
+
+		<hr>
+
+	<h2 style="font-size: 1.4em;">Edition de l'adresse du restaurant et numéro de téléphone</h2>	
+
+		<div class="row">
+
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+			<form method="post">
+				<input type="hidden" name="action" value="formulaire_2">
+
+				<label for="address">Adresse</label><br>
+				<input type="text" id="address" name="address" class="form-control" placeholder="Rue de la Gastro">
+
+				<br>
+				<label for="zipcode">Code postal</label><br>
+				<input type="text" id="zipcode" name="zipcode" class="form-control" placeholder="33124">
+
+				<br>
+				<label for="city">Ville</label><br>
+				<input type="text" id="city" name="city" class="form-control" placeholder="Bègles">
+
+				<br>
+				<label for="phone">Téléphone</label><br>
+				<input type="text" id="phone" name="phone" class="form-control" placeholder="0523141245">
+
+				<br>
+				<input type="submit" value="Editer l'adresse" class="btn btn-primary">
+				
+			</form>
+			</div>
+		</div>
 	</div>
 </body>
 </html>
