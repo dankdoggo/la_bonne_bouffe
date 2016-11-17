@@ -1,10 +1,10 @@
 <?php
 
 // com
-
+require_once '../inc/connect.php';
 session_start();
 
-require_once '../inc/connect.php';
+
 
 if(isset($_SESSION['id']) && is_numeric($_SESSION['id'])){
 
@@ -26,32 +26,62 @@ if(isset($_SESSION['id']) && is_numeric($_SESSION['id'])){
 		<?php include 'header.php'; ?>
 		<header></header>
 
-		<main>
+		<main class="container">
 
-		 	<div class="col-sm-6 col-sm-push-3">
 
-				<h1 class="text-center text-info">Mon profil</h1><br>
+               
+                <h1 class="text-center text-info">
+			<i class="fa fa-user"></i> Profil d'un utilisateur
+		</h1>
 
-				<ul>
-					<li>
-						<strong>pseudo :</strong><?php echo($user['username']) ?>
-					</li>
-					<li>
-						<strong>email :</strong><?php echo($user['email']) ?>
-					</li>
-					<li>
-						<strong>avatar :</strong><?php echo($user['avatar']) ?>
-					</li>
-				</ul>
+                <hr>
 
-				<div>
-				<a href="edit_user.php?id=<?=$user['id'];?>" title="Modifier vos informations" class="btn btn-info btn-block">
-					<i class="fa fa-edit"></i>Modifier vos informations</a>
-				</div>
-			
-			</div>
+                <?php if(empty($user)): ?>
+                    <div class="alert alert-danger">
+                        Utilisateur inconnu !
+                    </div>
+                    <?php endif; ?>
 
-			
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <ul>
+                                    <li>
+                                        <strong>Pseudo :</strong>
+                                        <?=$user['username'];?>
+                                    </li>
+                                    <li>
+                                    	<strong>Email :</strong>
+                                        
+                                        <?=$user['email'];?>
+                                    </li>
+                                    <li>
+                                        <strong>Status :</strong>
+                                        <?php if($user['permission'] == 1): ?> 
+                                        	&Eacutediteur
+                                        <?php else: ?>
+                                        	Administrateur
+                                        <?php endif; ?>
+
+                                    </li>
+                                </ul>
+
+                                <hr>
+                                <br>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <a href="edit_user.php?id=<?=$user['id'];?>" title="Editer cet utilisateur" class="btn btn-info btn-block">
+                                            <i class="fa fa-edit"></i> Editer
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <img src="<?=$user['avatar'];?>" class="img-thumbnail img-responsive">
+                            </div>
+                        </div>
 
 		</main>
 		
