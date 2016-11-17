@@ -36,68 +36,64 @@
 
 
 		 <!-- My CSS -->
-        <link href="css/style.css" rel="stylesheet">
+        <link href="css/styles.css" rel="stylesheet">
 
 	</head>
 
 	<body>
+	<div class="wrapper"> <!-- Wrapper comprenant header + main + footer -->
 
-		<div class="wrapper">
-	        
-	        <header id="header">
-
-	        	<div class="bloc-contact">
-	        		<div class="titre-contact"> La bonne bouffe</div>
-	        		<div class="info-contact"> 1 rue de l'avenue - 33000 Bordeaux </div>
-	        		<div class="info-contact"> 01.23.45.67.89</div>
-	        		
-	        	</div>
-
-	      	 	<nav></nav>
-
-	      	 	<div>Nous contacter</div>
-	        	
-
-	        </header>
+			<?php include_once 'inc/header.php'; ?>		
 	        
 	        <main>
 
 
 	        	<section id="section-slider">
 
-	        		<div id="slider"></div>
+	        		<div class="bloc-slider center-block">
+	        			<img class="img-slider" src="img/resto.jpg">
+	        		</div>
 
 	        	</section>
-
 
 	        	<section id="section-recipe">
 
 	        		<h1 class="home h1-home text-center">Les recettes des chefs</h1>
+	        		<p class="text-recipe text-center">
+	        		Vous avez adoré les plates dégustés chez nous ? Lancez-vous et devenez un vrai Chef !
+	        		<br> Découvrez nos meilleurs recettes pour prolonger le plaisir de vos papilles.
+	        		</p>
 
 	        		<div class="wrapper-recipe">
 
-		        		<div id="recipe1" class="bloc-recipe">
-		        			<div class="bloc-img-recipe">
-		        				<img class="img-recipe" src="img/burger.jpg"></img>
-		        			</div>
-		        			<h2 class="home h2-home">Lire la recette</h2>
-		        		</div>
-
-						<div id="recipe2" class="bloc-recipe">
-							<div class="bloc-img-recipe">
-		        				<img class="img-recipe" src="img/pate.jpg"></img>
-		        			</div>
-							<h2 class="home h2-home">Lire la recette</h2>
+	        			<div class="bloc-recipe">
+		        			<div id="recipe1" class="bloc-recipe-first">
+								<div class="bloc-recipe-second">
+			        				<img class="img-recipe" src="img/burger.jpg"></img>
+			        			</div>
+							</div>
+							<h2 class="home h2-home text-center">Lire la recette</h2>
 						</div>
 
-						<div id="recipe2" class="bloc-recipe">
-							<div class="bloc-img-recipe">
-		        				<img class="img-recipe" src="img/samoussa.jpg"></img>
-		        			</div>
-							<h2 class="home h2-home">Lire la recette</h2>
+						<div class="bloc-recipe">
+							<div id="recipe2" class="bloc-recipe-first">
+								<div class="bloc-recipe-second">
+		        					<img class="img-recipe" src="img/burger.jpg"></img>
+		        				</div>
+							</div>
+							<h2 class="home h2-home text-center">Lire la recette</h2>
 						</div>
 
-					</div>
+						<div class="bloc-recipe">
+							<div id="recipe3" class="bloc-recipe-first">
+								<div class="bloc-recipe-second">
+		        					<img class="img-recipe" src="img/burger.jpg"></img>
+		        				</div>
+							</div>
+							<h2 class="home h2-home text-center">Lire la recette</h2>
+						</div>
+
+					</div> <!-- fermeture wrapper-recipe -->
 
 	        		
 	        	</section>
@@ -105,6 +101,7 @@
 				<section id="section-link-recipe">
 
 					<div class="link-recipe center-block"> Découvrir toutes nos recettes de Chef </div>
+
 					
 				</section>
 
@@ -112,12 +109,15 @@
 
 	        </main>
 
-	        <footer>
-	        	
-	        </footer>
+	       <?php include_once 'inc/footer.php'; ?>
 
 
-	     </div> <!-- fermeture wrapper  -->  
+	     </div> <!-- fermeture wrapper comprenant header + main + footer -->
+
+
+
+
+
         
         <!-- 
 *******************************************************************************************

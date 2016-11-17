@@ -84,23 +84,19 @@ body{
 
 
 #section-slider{
-	height: 28.125em; /*à enlever ensuite*/
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	margin-top: 1em;
+	padding-top: 2em;
 }
 
 .bloc-slider{
-	height: 25em !important;
-	width: 65em !important;
+	height: 23.5em !important;
+	width: 40em !important;
 	overflow: hidden !important;
 	text-align: center !important;
-	background-color: white;
 	position: relative;
-
 }
-
 
 .img-slider{
 	max-height: 100%;
@@ -108,7 +104,7 @@ body{
 	text-align: center;
 	margin: auto;
 	position: absolute;
-	left: -32%;
+	left: 6%;
 }
 
 /*******Section recipe de index.php*****/
@@ -124,15 +120,9 @@ body{
 
 
 .wrapper-recipe{
-	height: 19.0625em; /*à enlever ensuite*/
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
-}
-
-
-#bloc-recipe{
-	height: 9.375em; /*à enlever ensuite*/
 }
 
 
@@ -152,6 +142,7 @@ body{
 	font-family: 'Source Sans Pro', sans-serif;
 	font-size: 1em;
 	font-style: italic;
+	margin-top: 2em;
 	margin-bottom: 2em;
 }
 
@@ -166,8 +157,8 @@ body{
 	width: 14.6875em !important;
 	overflow: hidden !important;
 	text-align: center !important;
-	border: 1px, solid;
-	border-radius: 4px;
+	border: 0.0625em, solid;
+	border-radius: 0.25em;
 }
 
 .bloc-recipe-second{
@@ -262,7 +253,6 @@ body{
 /*********style of FORMULAIRE of contact.php*************************/
 
 .wrapper-form{
-	height: 1000px; /*à enlever aprs*/
 	width: 50%;
 	margin:0 auto;
 }
@@ -302,26 +292,26 @@ body{
 .input-contact{
 	font-family: 'Source Sans Pro', sans-serif;
 	font-size: 1em;
-	width: 600px;
+	width: 37.5em;
 	color: #90837B;
 	border: 0;
-	border-radius: 4px;
+	border-radius: 0.25em;
 	margin-bottom: 1em;
-	padding: 5px;
+	padding: 0.3125em;
 }
 
 .textarea-contact{
-	height:150px;
-	padding: 5px;
+	height: 9.375em;
+	padding: 0.3125em;
 }
 
 
 .boutton-contact{
-	width: 100px;
+	width: 6.25em;
 	font-family: 'Josefin Sans', sans-serif;
 	font-size: 1.2em;
 	color:white;
 	background-color: #A9414C;
 	border: 0;
-	border-radius: 4px;
+	border-radius: 0.25em;
 }
