@@ -15,19 +15,7 @@ require_once '../inc/connect.php';
 	}else{
 		var_dump($select->errorInfo());
 	}
-
-	//On prépare l'affichage des messages non lu (en gras)
-	foreach ($messages as $control) {
-
-		if($control['is_read'] == 0){
-			$bold = ' style="font-weight:bold;"';
-		}elseif($control['is_read'] == 1){
-			//Sinon, affichage normal
-			$bold = '';
-		}
-	}
 	
-
 /*}elseif($_SESSION['permission'] === 1){
 	//Si l'utilisateur est un éditeur, alors on le redirige vers la liste des recettes
 	header('Location: ../list_recipes.php');
@@ -72,13 +60,19 @@ require_once '../inc/connect.php';
 					if(!empty($messages)){
 						foreach ($messages as $message) {
 
+							if($message['is_read'] == 0){
+								$bold = ' style="font-weight:bold;"';
+							}elseif($message['is_read'] == 1){
+								//Sinon, affichage normal
+								$bold = '';
+							}
 							echo '<tr>';
 								echo '<td class="text-center"'.$bold.'>'.$message['firstname'].'</td>';
 								echo '<td class="text-center"'.$bold.'>'.$message['lastname'].'</td>';
 								echo '<td class="text-center"'.$bold.'>'.$message['email'].'</td>';
 								echo '<td class="text-center"'.$bold.'>'.substr($message['message'], 0, 10).'...</td>';
 								echo '<td class="text-center"><a href="view_mail.php?id='.$message['id'].'">Voir</a></td>';
-								echo '<td class="text-center"><span class="glyphicon glyphicon-remove alert alert-danger"></span></td>';
+								echo '<td class="text-center"><a href="delete_message.php?id='.$message['id'].'"<span class="glyphicon glyphicon-remove alert alert-danger"></span></a></td>';
 							echo '</tr>';
 									
 						}
