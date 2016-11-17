@@ -1,9 +1,7 @@
 <?php
 
-
 require_once 'inc/connect.php';
 require_once 'inc/functions.php'; 
-
 
 $errors = [];
 $post = [];
@@ -34,18 +32,19 @@ if (!empty($_POST)) {
 	}
 
 	if(count($errors) === 0){
-		$add=$bdd->prepare ('INSERT INTO lbb_contact (firstname, lastname, email, message) VALUES (:firstname, :lastname, : email, :message)');
+		$add=$bdd->prepare ('INSERT INTO lbb_contact (firstname, lastname, email, message, is_read) VALUES (:firstname, :lastname, : email, :message, :is_read)');
 
 		$add->bindValue(':firstname',$post['FirstName-take']);
 		$add->bindValue(':lastname',$post['LastName-take']);
 		$add->bindValue(':email',$post['Email-take']);
 		$add->bindValue(':message',$post['Message-take']);
+		$add->bindValue(':is_read', 0, PDO::PARAM_BOOL);
 
 		if($add->execute()){
 			$formValid = true;
 		}
 
-	} /*fermeture count error ==O*/
+	} /*fermeture count $errors ==O*/
 
 	else {
 		$hasError = true;
@@ -94,7 +93,7 @@ if (!empty($_POST)) {
 
 
 		 <!-- My CSS -->
-        <link href="css/style.css" rel="stylesheet">
+        <link href="css/styles.css" rel="stylesheet">
 	</head>
 
 	<body>
@@ -127,6 +126,19 @@ if (!empty($_POST)) {
 	        		Nous traiterons avec grand plaisir votre demande.
 	        		<br> Envoyez-nous votre message directement avec ce formulaire !
 	        		</p>
+
+					<!-- Affichage des messages d'erreurs (condition vérification formulaire)-->
+					<?php
+					if($hasError === true){
+					echo '<div class="alert alert-danger">'.implode(' - ', $errors). '</div>';
+					}
+					if($formValid === true){
+					echo '<div class= "alert alert-success"> Bravo votre film est bien enregistré</div>';
+					}
+					?>
+
+
+
 
 					<form method="POST" class="contact">
 
