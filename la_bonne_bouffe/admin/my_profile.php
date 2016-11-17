@@ -50,12 +50,19 @@ if(isset($_SESSION['id']) && is_numeric($_SESSION['id'])){
                                     <li>
                                         <strong>Pseudo :</strong>
                                         <?=$user['username'];?>
-                                    </li>
+                                    </li><br>
+                                     <li>
+                                        <strong>Nom :</strong>
+                                        <?=$user['lastname'];?>
+                                    </li><br>
+                                     <li>
+                                        <strong>Prénom :</strong>
+                                        <?=$user['firstname'];?>
+                                    </li><br>
                                     <li>
                                     	<strong>Email :</strong>
-                                        
                                         <?=$user['email'];?>
-                                    </li>
+                                    </li><br>
                                     <li>
                                         <strong>Status :</strong>
                                         <?php if($user['permission'] == 1): ?> 

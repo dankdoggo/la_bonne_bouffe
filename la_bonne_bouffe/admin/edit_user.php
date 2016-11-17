@@ -1,17 +1,4 @@
-
-
-<!--  PROBLEME AVEC L UPLOAD ATTENDRE LA FIN DE ADD_USER -->
-
-
-
-
-
-
-
-
 <?php
-
-session_start();
 
 require_once '../inc/connect.php';
 require_once '../inc/functions.php';
@@ -19,13 +6,21 @@ require_once '../inc/functions.php';
 
 $post = [];
 $errors = [];
+$updateAvatar = false;
+$updatePassword = false;
 $mimeTypeAllow = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'];
 $dirUpload = 'uploads/';
 
 if(!empty($_POST)){
 	$post = array_map('trim', array_map('strip_tags', $_POST)); 
 
+	if(!minAndMaxLength($post['lastname'], 2, 20)){
+		$errors[] = 'Votre prénom doit comporter entre 3 et 20 caractères';
+	}
 
+	if(!minAndMaxLength($post['firstname'], 2, 20)){
+		$errors[] = 'Votre nom doit comporter entre 3 et 20 caractères';
+	}
 
 	if(!filter_var($post['email'], FILTER_VALIDATE_EMAIL)){
 		$errors[] = 'Votre email est invalide';
@@ -33,11 +28,10 @@ if(!empty($_POST)){
 
 	if(!empty($post['password'])){
 		$updatePassword = true;
-		if(!minAndMaxLength($post['password'], 6, 20)){
-			$errors[] = 'Votre mot de passe doit comporter entre 6 et 20 caractères';
+		if(!minAndMaxLength($post['password'], 8, 20)){
+			$errors[] = 'Votre mot de passe doit comporter entre 8 et 20 caractères';
 		}
 	}
-
 
 	if(is_uploaded_file($_FILES['avatar']['tmp_name']) && file_exists($_FILES['avatar']['tmp_name'])){
 		$finfo = new finfo();
@@ -66,14 +60,29 @@ if(!empty($_POST)){
 	if(count($errors) === 0){
 
 
-		
-		$update = $bdd->prepare('UPDATE lbb_users SET email = :email, password = : password, avatar = :avatar WHERE id = :id'); // requete SQl par ID
-		
+		$columnSQL = 'firstname = :firstname, lastname = :lastname, email = :email, '; // on instencie la variable $column qui contiendra les informations utilisateurs stockées dans la bdd
+
+		if($updatePassword){
+			$columnSQL.= ', password = :password'; // variable $updatePassword qui contient les infos concaténés + le mdp
+		}
+
+		if($updateAvatar){
+			$columnSQL.= ', avatar = :avatar'; // variable $updatePassword qui contient les infos concaténés + l'avatar 
+		}
+
+		$update = $bdd->prepare('UPDATE lbb_users SET '.$columnSQL.' WHERE id = :idUser'); // requete SQl par ID
 		$update->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
+		$update->bindValue(':firstname', $post['firstname']);
+		$update->bindValue(':lastname', $post['lastname']);
 		$update->bindValue(':email', $post['email']);
-		$update->bindValue(':password', password_hash($post['password'], PASSWORD_DEFAULT));
-		$update->bindValue(':avatar', $dirUpload.$avatarName); 
-	
+		
+		if($updatePassword){
+			$update->bindValue(':password', password_hash($post['password'], PASSWORD_DEFAULT)); //  update du MDP + hachage de sécu
+		}
+
+		if($updateAvatar){
+			$update->bindValue(':avatar', $dirUpload.$avatarName); // update de l'avatar
+		}
 
 
 
@@ -86,14 +95,16 @@ if(!empty($_POST)){
 	}
 
 }
-	if(isset($_SESSION['id']) && is_numeric($_SESSION['id'])){
+
+if(isset($_GET['id']) && is_numeric($_GET['id'])){ // si l'ID est ok
 
 	$select = $bdd->prepare('SELECT * FROM lbb_users WHERE id = :id');
-	$select->bindValue(':id', $_SESSION['id'], PDO::PARAM_INT);
+	$select->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
 	if($select->execute()){
-		$user = $select->fetch(PDO::FETCH_ASSOC);
+		$user = $select->fetch(PDO::FETCH_ASSOC);  // on affiche les résultats dans $user
 	}
 }
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -104,7 +115,7 @@ if(!empty($_POST)){
 	</head>
 	<body>
 		
-		<header><?php include 'header.php'; ?></header>
+		<?php include 'header.php'; ?>
 
 		<?php if(count($errors) > 0): ?>
 					<div class="alert alert-danger">
@@ -127,18 +138,25 @@ if(!empty($_POST)){
 				<form method="post">
 					
 					
-				
+					
+					<label for="lastname">Nom</label>
+					<input type="lastname" name="lastname" id="lastname" value="<?=$user['lastname'];?>"  class="form-control">
+
+					<br><br>
+					<label for="firstname">Prénom</label>
+					<input type="text" name="firstname" id="firstname" value="<?=$user['firstname'];?>"  class="form-control">
+
 					<br><br>
 					<label for="password">Mot de passe</label>
-					<input type="password" name="password" id="password" value="<?php echo ($user['password']) ?>" class="form-control">
+					<input type="password" name="password" id="password" class="form-control">
 
 					<br><br>
 					<label for="email">Email</label>
-					<input type="text" name="email" id="email" value="<?php echo ($user['email']) ?>" class="form-control">
+					<input type="text" name="email" id="email" value="<?=$user['email'];?>"  class="form-control">
 
 					<br><br>
 					<label for="avatar">Avatar</label>
-					<input type="file" name="avatar" id="avatar" class="input-file" value=" <img src="<?=$user['avatar'];?>"" accept="image/*">
+					<input type="file" name="avatar" id="avatar" value="<?=$user['avatar'];?>" class="input-file" accept="image/*">
 
 					<br><br>
 					<input type="submit" id="submit" value="editer les informations" class="btn btn-primary">
