@@ -5,7 +5,7 @@ session_start();
 require_once '../inc/connect.php';
 
 //Si l'utilisateur connecté est un administrateur, alors on lui affiche la liste des messages
-if($_SESSION['permission'] === 1){
+if($_SESSION['permission'] === 2){
 
 	//Récupération des mails
 	$select = $bdd->prepare('SELECT * FROM lbb_users');
@@ -25,8 +25,8 @@ if($_SESSION['permission'] === 1){
 
 }else{
 	//Si l'utilisateur est un éditeur, alors on le redirige vers la liste des recettes
-	header('Location: ../list_recipes.php');
-	die();
+	/*header('Location: ../list_recipes.php');
+	die();*/
 }
 
 
