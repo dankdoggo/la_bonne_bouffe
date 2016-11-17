@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Mettre a jour Recette</title>
+		<title>Mettre à jour la Recette</title>
 		 <!--Feuille de style Bootstrape-->
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	</head>
@@ -22,7 +22,7 @@
 					<label  class="text-center text-info">Description :</label><br>	
 					<textarea name="content" class="form-control" placeholder="La recette ici"></textarea><br>
 					
-					<label class="text-center text-info">photo : </label><br>
+					<label class="text-center text-info">Photo : </label><br>
 					<input type="file" name="picture" class="input-file" accept="image/*"><br>
 
 					<input type="submit" name="submit" class="btn btn-primary">

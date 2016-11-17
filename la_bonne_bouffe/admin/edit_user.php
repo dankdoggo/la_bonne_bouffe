@@ -99,7 +99,7 @@ if(!empty($_POST)){
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Modifier un utlisateur</title>
+		<title>Modifier un compte utlisateur</title>
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	</head>
 	<body>
@@ -125,7 +125,7 @@ if(!empty($_POST)){
 					<input type="text" name="email" id="email" value="<?php echo ($user['email']) ?>" class="form-control">
 
 					<br><br>
-					<label for="avatar">avatar</label>
+					<label for="avatar">Avatar</label>
 					<input type="file" name="avatar" id="avatar" class="input-file" value="<?php echo ($user['avatar']) ?>" accept="image/*">
 
 					<br><br>

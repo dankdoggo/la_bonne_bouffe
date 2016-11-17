@@ -46,7 +46,7 @@
 			<form method="post" class="pager">
 				 <input type="button" onclick="history.back();" value="Annuler" class="btn btn-default">
 
-				 <input type="submit" name="delete" value="supprimer cette recette" class="btn btn-success">
+				 <input type="submit" name="delete" value="Confirmer la supression" class="btn btn-success">
 			</form>
 
 	</main>
