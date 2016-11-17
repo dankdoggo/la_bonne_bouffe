@@ -15,24 +15,24 @@ if (!empty($_POST)) {
 		$post[$key] = trim(strip_tags($value));
 	} // fermeture de mon nettoyage de $POST
 
-	if (empty($post['FirstName-take']) || !minAndMaxLenght($post['FirstName-take'], 3, 30 )){
+	if (empty($post['FirstName-take']) || !minAndMaxLength($post['FirstName-take'], 3, 30 )){
 		$errors [] = 'Merci d\'indiquer un prénom entre  trois  et trente caractères';
 	}
 
-	if (empty($post['LastName-take']) || !minAndMaxLenght($post['LastName-take'], 3, 30 )){
-		$errors [] = 'Merci d\'indiquer un prénom entre trois et trente caractères';
+	if (empty($post['LastName-take']) || !minAndMaxLength($post['LastName-take'], 3, 30 )){
+		$errors [] = 'Merci d\'indiquer un nom entre trois et trente caractères';
 	}
 
 	if(!filter_var(($post['Email-take']),FILTER_VALIDATE_EMAIL)){
 		$errors [] = 'Votre adresse email n\'est pas correcte';
 	}
 
-	if (empty($post['Message-take']) || !minAndMaxLenght($post['Message-take'], 3, 100 )){
-		$errors [] = 'Merci d\'indiquer un message entre trois et cent caractères';
+	if (empty($post['Message-take']) || !minAndMaxLength($post['Message-take'], 3, 1000 )){
+		$errors [] = 'Merci d\'indiquer un message d\'au moins trois caractères';
 	}
 
 	if(count($errors) === 0){
-		$add=$bdd->prepare ('INSERT INTO lbb_contact (firstname, lastname, email, message, is_read) VALUES (:firstname, :lastname, : email, :message, :is_read)');
+		$add=$bdd->prepare ('INSERT INTO lbb_contact (firstname, lastname, email, message, is_read) VALUES (:firstname, :lastname, :email, :message, :is_read)');
 
 		$add->bindValue(':firstname',$post['FirstName-take']);
 		$add->bindValue(':lastname',$post['LastName-take']);
@@ -121,7 +121,7 @@ if (!empty($_POST)) {
 					echo '<div class="alert alert-danger">'.implode(' - ', $errors). '</div>';
 					}
 					if($formValid === true){
-					echo '<div class= "alert alert-success"> Bravo votre film est bien enregistré</div>';
+					echo '<div class= "alert alert-success"> Votre message a bien été envoyé. Nous y répondrons dans les plus brefs délais</div>';
 					}
 					?>
 
