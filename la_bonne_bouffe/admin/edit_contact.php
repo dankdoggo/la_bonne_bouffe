@@ -5,7 +5,7 @@ session_start();
 require_once '../inc/connect.php';
 
 //Si l'utilisateur connecté est un administrateur, alors on lui affiche la liste des messages
-/*if($_SESSION['permission'] === 2){*/
+if($_SESSION['permission'] === 2){
 
 	//Récupération des mails
 	$select = $bdd->prepare('SELECT * FROM lbb_contact');
@@ -15,15 +15,17 @@ require_once '../inc/connect.php';
 		var_dump($select->errorInfo());
 	}
 
-	/*if($messages['is_read'] == 0){
+	//On prépare l'affichage des messages non lu (en gras)
+	if($messages['is_read'] == 0){
 		$start_strong = '<strong>';
 		$end_strong = '</strong>';
 	}else{
+		//Sinon, affichage normal
 		$start_strong = '';
 		$end_strong = '';
-	}*/
+	}
 
-/*}elseif($_SESSION['permission'] === 1){
+}elseif($_SESSION['permission'] === 1){
 	//Si l'utilisateur est un éditeur, alors on le redirige vers la liste des recettes
 	header('Location: ../list_recipes.php');
 	die();
@@ -33,7 +35,7 @@ require_once '../inc/connect.php';
 	header('Location: index.php');
 	die();
 }
-*/
+
 
 ?>
 <!DOCTYPE html>
@@ -66,23 +68,13 @@ require_once '../inc/connect.php';
 					if(!empty($messages)){
 						foreach ($messages as $message) {
 
-							if($message['is_read'] == 0){
-								$start_strong = '<strong>';
-								$end_strong = '</strong>';
-							}else{
-								$start_strong = '';
-								$end_strong = '';
-							}
-
 							echo '<tr>';
-								echo $start_strong;
-									echo '<td class="text-center">'.$message['firstname'].'</td>';
-									echo '<td class="text-center">'.$message['lastname'].'</td>';
-									echo '<td class="text-center">'.$message['email'].'</td>';
-									echo '<td class="text-center">'.substr($message['message'], 0, 10).'</td>';
-									echo '<td class="text-center"><span class="glyphicon glyphicon-ok alert alert-success"></span></td>';
-									echo '<td class="text-center"><span class="glyphicon glyphicon-remove alert alert-danger"></span></td>';
-								echo $end_strong;
+								echo '<td class="text-center">'.$start_strong.$message['firstname'].$end_strong.'</td>';
+								echo '<td class="text-center">'.$start_strong.$message['lastname'].$end_strong.'</td>';
+								echo '<td class="text-center">'$start_strong.$message['email'].$end_strong'</td>';
+								echo '<td class="text-center">'.$start_strong.substr($message['message'], 0, 10).$end_strong.'</td>';
+								echo '<td class="text-center"><span class="glyphicon glyphicon-ok alert alert-success"></span></td>';
+								echo '<td class="text-center"><span class="glyphicon glyphicon-remove alert alert-danger"></span></td>';
 							echo '</tr>';
 									
 						}
