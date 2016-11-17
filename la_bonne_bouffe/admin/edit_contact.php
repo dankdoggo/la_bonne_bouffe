@@ -8,7 +8,7 @@ require_once '../inc/connect.php';
 /*if($_SESSION['permission'] === 2){*/
 
 	//Récupération des mails
-	$select = $bdd->prepare('SELECT * FROM lbb_users');
+	$select = $bdd->prepare('SELECT * FROM lbb_contact');
 	if($select->execute()){
 		$messages = $select->fetchAll(PDO::FETCH_ASSOC);
 	}else{
