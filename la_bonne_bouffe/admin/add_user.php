@@ -2,7 +2,7 @@
 
 require_once '../inc/functions.php';
 require_once '../inc/connect.php';
-
+session_start();
 $post = [];
 $errors = [];
 $success = false;
@@ -18,10 +18,10 @@ if(!empty($_POST)){
 	if(usernameExist($post['username'], $bdd)){
 		$errors[] = 'Votre Pseudo est déja utilisé';
 	}
-	if(empty($post['lastname']) || !minAndMaxLength($post['lastname'], 2, 20)){
+	if(empty($post['firstname']) || !minAndMaxLength($post['firstname'], 2, 20)){
 		$errors[] = 'Le pseudo doit contenir entre 2 et 20 caractères';
 	}
-	if(empty($post['firstname']) || !minAndMaxLength($post['firstname'], 2, 20)){
+	if(empty($post['lastname']) || !minAndMaxLength($post['lastname'], 2, 20)){
 		$errors[] = 'Le pseudo doit contenir entre 2 et 20 caractères';
 	}
 	if(empty($post['password']) || !minAndMaxLength($post['password'], 8, 20)){
@@ -60,15 +60,15 @@ if(!empty($_POST)){
 	}
 
 	if(count($errors) === 0){
-		$insert = $bdd->prepare('INSERT INTO lbb_users(username, email, password, avatar, lastname, firstname) VALUES(:username, :email, :password, :avatar, :lastname, firstname)');
+		$insert = $bdd->prepare('INSERT INTO lbb_users(username, firstname, lastname, email, password, avatar) VALUES(:username, :firstname, :lastname, :email, :password, :avatar)');
 
 		$insert->bindValue(':username', $post['username']);
+		$insert->bindValue(':firstname', $post['firstname']);
+		$insert->bindValue(':lastname', $post['lastname']);
 		$insert->bindValue(':email', $post['email']);
 		$insert->bindValue(':password', password_hash($post['password'], PASSWORD_DEFAULT));
 		$insert->bindValue(':avatar', $dirUpload.$avatarName);
-		$insert->bindValue(':lastname', $post['lastname']);
-		$insert->bindValue(':firstname', $post['firstname']);
-
+		
 		if($insert->execute()){
 			$success = true;
 		}

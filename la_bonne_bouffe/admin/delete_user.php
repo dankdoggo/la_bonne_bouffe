@@ -11,7 +11,7 @@
 			$delete->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
 
 			if($delete->execute()){
-				header('Location: edit_contact.php'); // si la supression s'effectue, on affiche la liste des users
+				header('Location: list_users.php'); // si la supression s'effectue, on affiche la liste des users
 				die;
 			}
 		}

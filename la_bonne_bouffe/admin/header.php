@@ -39,7 +39,7 @@ require_once '../inc/connect.php';
                         
                         
 
-                    <?php if(isset($_SESSION['permission']) && $_SESSION['permission'] == 2): ?> 
+                   <?php if(isset($_SESSION['permission']) && $_SESSION['permission'] == 2): ?>  
                         <a href="add_user.php"><li>AJOUTER UN UTILISATEUR</li></a>
                         <a href="list_users.php"><li>LISTE DES UTILISATEURS</li></a>
                         <a href="edit_header.php"><li>EDITER SLIDER</li></a>
