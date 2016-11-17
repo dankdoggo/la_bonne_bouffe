@@ -103,8 +103,20 @@ if(!empty($_POST)){
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	</head>
 	<body>
-		<?php include 'header.php'; ?>
-		<header></header>
+		
+		<header><?php include 'header.php'; ?></header>
+
+		<?php if(count($errors) > 0): ?>
+					<div class="alert alert-danger">
+						<?=implode('<br>', $errors);?>
+					</div>
+		
+				<?php elseif(isset($success) && $success == true): ?>
+
+					<div class="alert alert-success">
+						 compte utilisateur Mis à jour !
+					</div>
+				<?php endif; ?>
 
 		<main>
 
@@ -126,7 +138,7 @@ if(!empty($_POST)){
 
 					<br><br>
 					<label for="avatar">Avatar</label>
-					<input type="file" name="avatar" id="avatar" class="input-file" value="<?php echo ($user['avatar']) ?>" accept="image/*">
+					<input type="file" name="avatar" id="avatar" class="input-file" value=" <img src="<?=$user['avatar'];?>"" accept="image/*">
 
 					<br><br>
 					<input type="submit" id="submit" value="editer les informations" class="btn btn-primary">
