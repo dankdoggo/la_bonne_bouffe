@@ -1,7 +1,9 @@
 <?php
 
-require_once 'inc/connect.php';
-require_once 'inc/functions.php';
+session_start();
+
+require_once '../inc/connect.php';
+require_once '../inc/functions.php';
 
 
 $post = [];
@@ -54,9 +56,9 @@ if(!empty($_POST)){
 
 
 		
-		$update = $bdd->prepare('UPDATE lbb_users SET email = :email, password = : password, avatar = :avatar WHERE id = :idUser'); // requete SQl par ID
+		$update = $bdd->prepare('UPDATE lbb_users SET email = :email, password = : password, avatar = :avatar WHERE id = :id'); // requete SQl par ID
 		
-		$update->bindValue(':idUser', $_GET['id'], PDO::PARAM_INT);
+		$update->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
 		$update->bindValue(':email', $post['email']);
 		$update->bindValue(':password', password_hash($post['password'], PASSWORD_DEFAULT));
 		$update->bindValue(':avatar', $dirUpload.$avatarName); 
@@ -72,6 +74,14 @@ if(!empty($_POST)){
 		}
 	}
 
+}
+	if(isset($_GET['id']) && is_numeric($_GET['id'])){
+
+	$select = $bdd->prepare('SELECT * FROM lbb_users WHERE id = :id');
+	$select->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
+	if($select->execute()){
+		$user = $select->fetch(PDO::FETCH_ASSOC);
+	}
 }
 ?>
 <!DOCTYPE html>
@@ -97,15 +107,15 @@ if(!empty($_POST)){
 				
 					<br><br>
 					<label for="password">Mot de passe</label>
-					<input type="password" name="password" id="password" class="form-control">
+					<input type="password" name="password" id="password" value="<?php echo ($user['password']) ?>" class="form-control">
 
 					<br><br>
 					<label for="email">Email</label>
-					<input type="text" name="email" id="email" class="form-control">
+					<input type="text" name="email" id="email" value="<?php echo ($user['email']) ?>" class="form-control">
 
 					<br><br>
 					<label for="avatar">avatar</label>
-					<input type="file" name="avatar" id="avatar" class="input-file" accept="image/*">
+					<input type="file" name="avatar" id="avatar" class="input-file" value="<?php echo ($user['avatar']) ?>" accept="image/*">
 
 					<br><br>
 					<input type="submit" id="submit" value="editer les informations" class="btn btn-primary">

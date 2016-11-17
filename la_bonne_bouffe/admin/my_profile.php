@@ -1,3 +1,18 @@
+<?php
+
+session_start();
+
+require_once '../inc/connect.php';
+
+if(isset($_GET['id']) && is_numeric($_GET['id'])){
+
+	$select = $bdd->prepare('SELECT * FROM lbb_users WHERE id = :id');
+	$select->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
+	if($select->execute()){
+		$user = $select->fetch(PDO::FETCH_ASSOC);
+	}
+}
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -17,13 +32,13 @@
 
 				<ul>
 					<li>
-						<strong>pseudo :</strong> <!-- ajouter le php  -->
+						<strong>pseudo :</strong><?php echo($user['username']) ?>
 					</li>
 					<li>
-						<strong>email :</strong> <!-- ajouter le php  -->
+						<strong>email :</strong><?php echo($user['email']) ?>
 					</li>
 					<li>
-						<strong>avatar :</strong> <!-- ajouter le php  -->
+						<strong>avatar :</strong><?php echo($user['avatar']) ?>
 					</li>
 				</ul>
 
