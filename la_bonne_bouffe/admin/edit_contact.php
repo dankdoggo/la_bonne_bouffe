@@ -73,19 +73,18 @@ require_once '../inc/connect.php';
 								$start_strong = '';
 								$end_strong = '';
 							}
-								
-							
 
-							echo $start_strong;
-								echo '<tr>';
+							echo '<tr>';
+								echo $start_strong;
 									echo '<td class="text-center">'.$message['firstname'].'</td>';
 									echo '<td class="text-center">'.$message['lastname'].'</td>';
 									echo '<td class="text-center">'.$message['email'].'</td>';
 									echo '<td class="text-center">'.substr($message['message'], 0, 10).'</td>';
 									echo '<td class="text-center"><span class="glyphicon glyphicon-ok alert alert-success"></span></td>';
 									echo '<td class="text-center"><span class="glyphicon glyphicon-remove alert alert-danger"></span></td>';
-								echo '</tr>';
-							echo $end_strong;		
+								echo $end_strong;
+							echo '</tr>';
+									
 						}
 					}else{
 						echo '<p class="alert alert-danger">Aucun message</p>';
