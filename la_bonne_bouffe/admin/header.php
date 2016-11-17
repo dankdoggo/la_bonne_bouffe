@@ -32,7 +32,7 @@ require_once '../inc/connect.php';
                 <ul>
 
 
-                    <!-- <?php if(!empty($_SESSION)): ?> -->
+                    
              
                         <a href="my_profile.php"><li>MON PROFIL</li></a>
                         <a href="add_recipe.php"><li>AJOUTER UNE RECETTE<li></a>
@@ -42,7 +42,7 @@ require_once '../inc/connect.php';
                 		
             		
             		
-            		<!-- <?php else: ?> -->
+            		
                       
                   		<a href="add_user.php"><li>AJOUTER UN UTILISATEUR</li></a>
                         <a href="list_users.php"><li>LISTE DES UTILISATEURS</li></a>
@@ -50,7 +50,6 @@ require_once '../inc/connect.php';
                         <a href="../list_recipes.php"><li>LISTE RECETTE</li></a>
                         <a href=""><li> <i class="fa fa-user-times"></i> SE DECONNECTER</li></a>
                         
-                	<!-- <?php endif;?> -->
                 	
                 </ul>
             </div>
