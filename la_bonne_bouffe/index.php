@@ -84,35 +84,11 @@ if($select->execute()){
 			        				<img class="img-recipe" src="<?=$recipe['picture'];?>"></img>
 			        			</div>
 							</div>
-							<a href="view_recipe.php?id=<?=$recipe['id']?>">
+							<a href="view_recipe.php?id=<?=$recipe['id'];?>">
 							<h2 class="home h2-home text-center">Lire la recette</h2>
 							</a>
 						</div>
-					<?php endforeach;?>	
-					<!-- 	<div class="bloc-recipe">
-							<div id="recipe2" class="bloc-recipe-first">
-								<div class="bloc-recipe-second">
-		        					<img class="img-recipe" src="img/burger.jpg"></img>
-		        				</div>
-							</div>
-							<a href="#">
-							<h2 class="home h2-home text-center">Lire la recette</h2>
-							</a>
-						</div>
-
-						<div class="bloc-recipe">
-							<div id="recipe3" class="bloc-recipe-first">
-								<div class="bloc-recipe-second">
-		        					<img class="img-recipe" src="img/burger.jpg"></img>
-		        				</div>
-							</div>
-							<a href="#">
-							<h2 class="home h2-home text-center">Lire la recette</h2>
-							</a>
-						</div>
-
-					</div> <!-- fermeture wrapper-recipe -->
-	        		
+					<?php endforeach;?>		        		
 	        	</section>
 
 				<section id="section-link-recipe">
