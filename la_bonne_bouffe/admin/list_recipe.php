@@ -7,7 +7,6 @@ $get =[];
 $sql='';
 
 
-
 /*PHP module de recherche*/
 
 if (!empty($_GET)) {
@@ -118,8 +117,8 @@ else {
 				<?php foreach ($resultSearch as $value):?>
 					<tr>
 						<td><?= ucfirst($value['title']);?></td>
-						<td><?= ucfirst($value['author']);?></td>
 						<td><?=$value['date_publish'];?></td>
+						<td><?= ucfirst($value['author']);?></td>
 						<td>
 							<a href="edit_recipe.php?id=<?=$value['id'];?>"> 
 							<i class="fa fa-pencil"></i> Modifier</a>
