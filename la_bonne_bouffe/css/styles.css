@@ -1,0 +1,326 @@
+@charset"utf-8";
+
+/*GENERALITES*****************************/
+
+body{
+	font-size:16px;
+	font-family: 'Josefin Sans', sans-serif;
+	color: black;
+}
+
+.wrapper {
+	max-width: 100%;
+	width: 75em;
+	margin: 0 auto;
+}
+
+/*********HEADER*************************/
+
+#header{
+	height: 5em;
+	background-color: #505050;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.titre-contact{
+	font-family: 'Source Sans Pro', sans-serif;
+	color: #EBEBE8;
+	font-size: 1.5em;
+}
+
+.info-contact{
+	font-family: 'Source Sans Pro', sans-serif;
+	color: #EBEBE8;
+	font-size: 1em;
+}
+
+.bloc-contact{
+	padding-left: 2em;
+}
+
+
+.nous-contacter{
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 1.5em;
+	color: #EBEBE8;
+	line-height: 3em;
+	padding-right: 2em;
+}
+
+/*********FOOTER*************************/
+
+#footer {
+	background-color: #505050;
+	text-align: center;
+	color: #EBEBE8;
+	font-size: 1em;
+	padding: 0.4em;
+}
+
+/*******TITRES index.php***********/
+
+.home{
+	margin: 0;
+	color: #A9414C;
+}
+
+.h1-home{
+	font-family: 'Source Sans Pro', sans-serif;
+	font-style: italic;
+	font-size: 1.8em;
+	padding-top: 1em;
+	padding-bottom: 1em;
+}
+
+.h2-home{
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 1.2em;
+}
+
+/*******Section slider de index.php*****/
+
+
+#section-slider{
+	height: 28.125em; /*à enlever ensuite*/
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin-top: 1em;
+}
+
+.bloc-slider{
+	height: 25em !important;
+	width: 65em !important;
+	overflow: hidden !important;
+	text-align: center !important;
+	background-color: white;
+	position: relative;
+
+}
+
+
+.img-slider{
+	max-height: 100%;
+	display: block;
+	text-align: center;
+	margin: auto;
+	position: absolute;
+	left: -32%;
+}
+
+/*******Section recipe de index.php*****/
+
+
+.text-recipe{
+	font-family: 'Josefin Sans', sans-serif;
+	font-size: 1.2em;
+	font-style: italic;
+	color: #90837B;
+	margin-bottom: 2.5em;
+}
+
+
+.wrapper-recipe{
+	height: 19.0625em; /*à enlever ensuite*/
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+
+
+#bloc-recipe{
+	height: 9.375em; /*à enlever ensuite*/
+}
+
+
+
+/*******Section list recipe de index.php*****/
+
+
+.link-recipe{
+	height:4em;
+	line-height: 4em;
+	width: 25%;
+	background-color: #A9414C;
+	border: 0.0625em, solid;
+	border-radius: 0.1875em;
+	text-align: center;
+	color: white;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 1em;
+	font-style: italic;
+	margin-bottom: 2em;
+}
+
+.bloc-recipe{
+	display: flex;
+	flex-direction: column;
+}
+
+
+.bloc-recipe-first{
+	height: 14.6875em !important;
+	width: 14.6875em !important;
+	overflow: hidden !important;
+	text-align: center !important;
+	border: 1px, solid;
+	border-radius: 4px;
+}
+
+.bloc-recipe-second{
+	height: 100% !important;
+	width: 100% !important;
+	overflow: hidden !important;
+	position: relative;
+}
+
+.img-recipe{
+	max-height: 100%;
+	display: block;
+	text-align: center;
+	margin: auto;
+	position: absolute;
+	left: -32%;
+}
+
+
+/**********Style section-list-recipe of list_recipe.php**********/
+
+#section-list-recipe {
+	background-color: #EBEBE8;
+}
+
+.title-section-list {
+	margin: 0 auto;
+	padding: 1em 0;
+	font-family: 'Source Sans Pro', sans-serif;
+	color: #A9414C;
+	font-size: 1.8em;
+}
+
+/*style img and text*/
+
+.contain-img-list-recipe {
+	height: 14.6875em;
+	width: 14.6875em;
+	overflow: hidden;
+	position: relative;	
+}
+
+.img-list-recipe {
+	position: absolute;
+	left: -29%;
+	max-height: 100%;
+}
+
+.contain-img-text-list-recipe {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 1em 0;
+}
+
+.title-list-recipe {
+	font-size: 1.2em;
+	padding: 0.5em 0;
+	color: #A9414C;
+}
+
+
+/*style de la barre recherche*/
+
+.contain-search-recipe {
+	text-align: center;
+}
+
+
+/**********style of view_recipe.php*************/
+
+
+#section-view-recipe {
+	padding-left: 2em;
+	background-color: #EBEBE8;
+}
+
+.title-ingredient-preparation {
+	color: #A9414C;
+	font-size: 1.4em;
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
+.date-author-recipe {
+	color: #A9414C;
+	margin: 0;
+	padding-bottom: 0.625em;
+}
+
+
+/*********style of form of contact.php*************************/
+
+.wrapper-form{
+	height: 1000px; /*à enlever aprs*/
+	width: 50%;
+	margin:0 auto;
+}
+
+.contact{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+
+.h1-contact{
+	margin: 0;
+	color: #A9414C;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 1.8em;
+	padding-top: 1em;
+	padding-bottom: 1em;
+}
+
+.text-contact{
+	font-family: 'Josefin Sans', sans-serif;
+	font-size: 1.2em;
+	font-style: italic;
+	color: #90837B;
+	margin-bottom: 2.5em;
+}
+
+
+.label-contact{
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 1em;
+	color: #A9414C;
+	margin-bottom: 1em;
+	margin-right: 0.5em;
+}
+
+.input-contact{
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 1em;
+	width: 600px;
+	color: #90837B;
+	border: 0;
+	border-radius: 4px;
+	margin-bottom: 1em;
+	padding: 5px;
+}
+
+.textarea-contact{
+	height:150px;
+	padding: 5px;
+}
+
+
+.boutton-contact{
+	width: 100px;
+	font-family: 'Josefin Sans', sans-serif;
+	font-size: 1.2em;
+	color:white;
+	background-color: #A9414C;
+	border: 0;
+	border-radius: 4px;
+}
