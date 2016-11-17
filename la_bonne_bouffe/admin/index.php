@@ -46,7 +46,7 @@ if(!empty($_POST)){
 						];
 
 						if($_SESSION['permission'] == 1){ //(éditeur = 1, admin = 2) Si l'utilisateur est un éditeur, alors on redirige sur la liste
-							header('Location: ../list_users.php');
+							header('Location: my_profile.php');
 							die();
 						}
 							
