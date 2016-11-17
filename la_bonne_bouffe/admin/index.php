@@ -40,6 +40,8 @@ if(!empty($_POST)){
 					if($formValid){
 						$_SESSION = [
 							'username'		=>	$user['username'],
+							'firstname'		=>	$user['firstname'],
+							'lastname'		=>  $user['lastname'],
 							'permission'	=>	$user['permission'],
 							'email'			=> 	$user['email'],
 							'id'			=> 	$user['id'],
