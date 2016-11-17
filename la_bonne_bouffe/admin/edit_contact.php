@@ -23,12 +23,17 @@ if($_SESSION['permission'] === 2){
 		$end_strong = '';
 	}
 
-}else{
+}/*elseif($_SESSION['permission'] === 1){
 	//Si l'utilisateur est un éditeur, alors on le redirige vers la liste des recettes
-	/*header('Location: ../list_recipes.php');
-	die();*/
-}
+	header('Location: ../list_recipes.php');
+	die();
 
+}else{
+	//Et s'il n'est rien, on le redirige vers la page de connexion 
+	header('Location: index.php');
+	die();
+}
+*/
 
 ?>
 <!DOCTYPE html>
