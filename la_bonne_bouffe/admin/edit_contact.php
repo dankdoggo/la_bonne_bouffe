@@ -71,7 +71,7 @@ if($_SESSION['permission'] === 2){
 							echo '<tr>';
 								echo '<td class="text-center">'.$start_strong.$message['firstname'].$end_strong.'</td>';
 								echo '<td class="text-center">'.$start_strong.$message['lastname'].$end_strong.'</td>';
-								echo '<td class="text-center">'$start_strong.$message['email'].$end_strong'</td>';
+								echo '<td class="text-center">'$start_strong.$message['email'].$end_strong.'</td>';
 								echo '<td class="text-center">'.$start_strong.substr($message['message'], 0, 10).$end_strong.'</td>';
 								echo '<td class="text-center"><span class="glyphicon glyphicon-ok alert alert-success"></span></td>';
 								echo '<td class="text-center"><span class="glyphicon glyphicon-remove alert alert-danger"></span></td>';
