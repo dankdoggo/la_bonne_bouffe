@@ -1,3 +1,22 @@
+<?php
+
+require_once 'inc/connect.php';
+
+if(isset($_GET['id']) && !empty($_GET['id'])){
+
+	$select = $bdd->prepare('SELECT * FROM lbb_recipe LEFT JOIN lbb_users ON id=id_author WHERE id = :idRecipe');
+	$select->bindValue(':idRecipe', $_GET['id'], PDO::PARAM_INT);
+
+	if($select->execute()){
+		$recipe = $select->fetch(PDO::FETCH_ASSOC);
+
+	}else{
+		var_dump($select->errorInfo());
+	}
+}else{
+	$error = 'La recette n\'existe pas';
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,9 +36,9 @@
 
 	<main>
 		<section id="section-view-recipe">
-			<h1 class="title-section-list">Migales aux oeufs</h1>
+			<h1 class="title-section-list"><?=$recipe['title'];?></h1>
 			<div class="contain-img-list-recipe">
-				<img src="img/migale.jpg" alt="migale" class="img-list-recipe">
+				<img src="<?=$recipe['picture'];?>" alt="migale" class="img-list-recipe">
 			</div>
 			<div>
 				<h2 class="title-ingredient-preparation">Ingrédients</h2>
@@ -31,9 +50,10 @@
 			</div>
 			<div>
 				<h2 class="title-ingredient-preparation">Préparation de la recette</h2>
-				<p>Faites cuire les oeufs environ 8 minutes dans l’eau bouillante. Enlevez les coquilles des oeufs et coupez-les en deux. Retirez les jaunes et placez-les dans un bol. Ajoutez la mayonnaise avec les jaunes et mélangez bien. Replacez cette préparation dans les blancs d’oeufs. Coupez les olives noires en deux. Placez une demi olive sur chaque oeuf pour faire les corps de mygales. Découpez les autres moitiés d’olives dans la longueur pour les pattes de mygales. Déposez les pattes de mygale sur les oeufs.</p>
+				<p><?=$recipe['content']?></p>
 			</div>
-			<p class="date-author-recipe">Publié le 17 - 11 - 2016 par Tartampion</p>
+			<p class="date-author-recipe">Publié le <?=$recipe['date_publish']?> par <?=$recipe['username']?></p>
+
 		</section>			
 	</main>
 

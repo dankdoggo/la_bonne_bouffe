@@ -1,7 +1,7 @@
 <?php
 	
 	require_once '../inc/connect.php';
-	
+	session_start();
 
 	if(isset($_GET['id']) && is_numeric($_GET['id'])){ // si l'id est reconu
 
@@ -11,7 +11,7 @@
 			$delete->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
 
 			if($delete->execute()){
-				header('Location: edit_contact.php'); // si la supression s'effectue, on affiche la liste des users
+				header('Location: list_users.php'); // si la supression s'effectue, on affiche la liste des users
 				die;
 			}
 		}

@@ -2,7 +2,7 @@
 
 require_once '../inc/functions.php';
 require_once '../inc/connect.php';
-
+session_start();
 $post = [];
 $errors = [];
 $success = false;
@@ -18,11 +18,17 @@ if(!empty($_POST)){
 	if(usernameExist($post['username'], $bdd)){
 		$errors[] = 'Votre Pseudo est déja utilisé';
 	}
+	if(empty($post['firstname']) || !minAndMaxLength($post['firstname'], 2, 20)){
+		$errors[] = 'Le pseudo doit contenir entre 2 et 20 caractères';
+	}
+	if(empty($post['lastname']) || !minAndMaxLength($post['lastname'], 2, 20)){
+		$errors[] = 'Le pseudo doit contenir entre 2 et 20 caractères';
+	}
 	if(empty($post['password']) || !minAndMaxLength($post['password'], 8, 20)){
 		$errors[] = 'Le Mot de passe doit contenir entre 8 et 20 caractères';
 	}
 	if(!filter_var($post['email'], FILTER_VALIDATE_EMAIL)){
-		$errors[] = 'Veuillez enter une adresse mail valide';
+		$errors[] = 'Veuillez entrer une adresse mail valide';
 	}
 	if(emailExist($post['email'], $bdd)){
 		$errors[] = 'Votre Email est déja utilisé';
@@ -54,13 +60,15 @@ if(!empty($_POST)){
 	}
 
 	if(count($errors) === 0){
-		$insert = $bdd->prepare('INSERT INTO lbb_users(username, email, password, avatar) VALUES(:username, :email, :password, :avatar)');
+		$insert = $bdd->prepare('INSERT INTO lbb_users(username, firstname, lastname, email, password, avatar) VALUES(:username, :firstname, :lastname, :email, :password, :avatar)');
 
 		$insert->bindValue(':username', $post['username']);
+		$insert->bindValue(':firstname', $post['firstname']);
+		$insert->bindValue(':lastname', $post['lastname']);
 		$insert->bindValue(':email', $post['email']);
 		$insert->bindValue(':password', password_hash($post['password'], PASSWORD_DEFAULT));
 		$insert->bindValue(':avatar', $dirUpload.$avatarName);
-
+		
 		if($insert->execute()){
 			$success = true;
 		}
@@ -111,6 +119,14 @@ if(!empty($_POST)){
 					
 					<label for="username">Pseudo</label>
 					<input type="text" name="username" id="username" placeholder="" class="form-control">
+
+					<br><br>
+					<label for="lastname">Nom</label>
+					<input type="text" name="lastname" id="lastname" placeholder="" class="form-control">
+
+					<br><br>
+					<label for="firstname">Prénom</label>
+					<input type="text" name="firstname" id="firstname" placeholder="" class="form-control">
 				
 					<br><br>
 					<label for="password">Mot de passe</label>

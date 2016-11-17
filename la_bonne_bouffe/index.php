@@ -1,4 +1,16 @@
+<?php
 
+require_once 'inc/connect.php';
+
+$select = $bdd->prepare('SELECT * FROM lbb_recipe LIMIT 0,3');
+
+if($select->execute()){
+	$recipes = $select->fetchAll(PDO::FETCH_ASSOC);
+}else{
+	var_dump($select->errorInfo());
+}
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -51,7 +63,7 @@
 	        	<section id="section-slider">
 
 	        		<div class="bloc-slider center-block">
-	        			<img class="img-slider" src="img/resto.jpg">
+	        			<img class="img-slider" src="uploads/resto.jpg">
 	        		</div>
 
 	        	</section>
@@ -65,43 +77,18 @@
 	        		</p>
 
 	        		<div class="wrapper-recipe">
-
+	        		<?php foreach ($recipes as $recipe): ?>
 	        			<div class="bloc-recipe">
 		        			<div id="recipe1" class="bloc-recipe-first">
 								<div class="bloc-recipe-second">
-			        				<img class="img-recipe" src="img/burger.jpg"></img>
+			        				<img class="img-recipe" src="<?=$recipe['picture'];?>"></img>
 			        			</div>
 							</div>
-							<a href="#">
+							<a href="view_recipe.php?id=<?=$recipe['id'];?>">
 							<h2 class="home h2-home text-center">Lire la recette</h2>
 							</a>
 						</div>
-
-						<div class="bloc-recipe">
-							<div id="recipe2" class="bloc-recipe-first">
-								<div class="bloc-recipe-second">
-		        					<img class="img-recipe" src="img/burger.jpg"></img>
-		        				</div>
-							</div>
-							<a href="#">
-							<h2 class="home h2-home text-center">Lire la recette</h2>
-							</a>
-						</div>
-
-						<div class="bloc-recipe">
-							<div id="recipe3" class="bloc-recipe-first">
-								<div class="bloc-recipe-second">
-		        					<img class="img-recipe" src="img/burger.jpg"></img>
-		        				</div>
-							</div>
-							<a href="#">
-							<h2 class="home h2-home text-center">Lire la recette</h2>
-							</a>
-						</div>
-
-					</div> <!-- fermeture wrapper-recipe -->
-
-	        		
+					<?php endforeach;?>		        		
 	        	</section>
 
 				<section id="section-link-recipe">

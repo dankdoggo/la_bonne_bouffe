@@ -3,6 +3,7 @@
 	require_once '../inc/connect.php';
 	session_start();
 
+	var_dump($_SESSION);
 
 $query = $bdd->prepare('SELECT * FROM lbb_users');
 if($query->execute()){
@@ -60,7 +61,7 @@ else {
 								<i class="fa fa-user-circle-o"></i> Visualiser
 								</a>
 								&nbsp; - &nbsp;
-								<?php if(empty($_SESSION)): ?>
+								<?php if($_SESSION['permission'] == 2): ?>
 
 								<a href="edit_user.php?id=<?=$user['id'];?>" title="Editer cet utilisateur">
 									<i class="fa fa-edit"></i> Editer

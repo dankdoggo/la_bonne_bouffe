@@ -2,7 +2,7 @@
 
 require_once '../inc/connect.php';
 require_once '../inc/functions.php';
-
+session_start();
 $get =[];
 $sql='';
 
