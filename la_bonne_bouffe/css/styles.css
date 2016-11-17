@@ -12,6 +12,7 @@ body{
 	max-width: 100%;
 	width: 75em;
 	margin: 0 auto;
+	background-color: #EBEBE8.
 }
 
 /*********HEADER*************************/
@@ -258,7 +259,7 @@ body{
 }
 
 
-/*********style of form of contact.php*************************/
+/*********style of FORMULAIRE of contact.php*************************/
 
 .wrapper-form{
 	height: 1000px; /*à enlever aprs*/
