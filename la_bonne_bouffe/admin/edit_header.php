@@ -42,7 +42,7 @@
 			<input type="text" id="phone" name="phone" class="form-control">
 
 			<br>
-			<input type="submit" value="Se connecter" class="btn btn-primary">
+			<input type="submit" value="Soumettre" class="btn btn-primary">
 			
 		</form>
 	</div>
