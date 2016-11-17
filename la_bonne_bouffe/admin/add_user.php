@@ -18,11 +18,17 @@ if(!empty($_POST)){
 	if(usernameExist($post['username'], $bdd)){
 		$errors[] = 'Votre Pseudo est déja utilisé';
 	}
+	if(empty($post['lastname']) || !minAndMaxLength($post['lastname'], 2, 20)){
+		$errors[] = 'Le pseudo doit contenir entre 2 et 20 caractères';
+	}
+	if(empty($post['firstname']) || !minAndMaxLength($post['firstname'], 2, 20)){
+		$errors[] = 'Le pseudo doit contenir entre 2 et 20 caractères';
+	}
 	if(empty($post['password']) || !minAndMaxLength($post['password'], 8, 20)){
 		$errors[] = 'Le Mot de passe doit contenir entre 8 et 20 caractères';
 	}
 	if(!filter_var($post['email'], FILTER_VALIDATE_EMAIL)){
-		$errors[] = 'Veuillez enter une adresse mail valide';
+		$errors[] = 'Veuillez entrer une adresse mail valide';
 	}
 	if(emailExist($post['email'], $bdd)){
 		$errors[] = 'Votre Email est déja utilisé';
@@ -54,12 +60,14 @@ if(!empty($_POST)){
 	}
 
 	if(count($errors) === 0){
-		$insert = $bdd->prepare('INSERT INTO lbb_users(username, email, password, avatar) VALUES(:username, :email, :password, :avatar)');
+		$insert = $bdd->prepare('INSERT INTO lbb_users(username, email, password, avatar, lastname, firstname) VALUES(:username, :email, :password, :avatar, :lastname, firstname)');
 
 		$insert->bindValue(':username', $post['username']);
 		$insert->bindValue(':email', $post['email']);
 		$insert->bindValue(':password', password_hash($post['password'], PASSWORD_DEFAULT));
 		$insert->bindValue(':avatar', $dirUpload.$avatarName);
+		$insert->bindValue(':lastname', $post['lastname']);
+		$insert->bindValue(':firstname', $post['firstname']);
 
 		if($insert->execute()){
 			$success = true;
@@ -111,6 +119,12 @@ if(!empty($_POST)){
 					
 					<label for="username">Pseudo</label>
 					<input type="text" name="username" id="username" placeholder="" class="form-control">
+
+					<label for="lastname">Nom</label>
+					<input type="text" name="lastname" id="lastname" placeholder="" class="form-control">
+
+					<label for="firstname">Prénom</label>
+					<input type="text" name="firstname" id="firstname" placeholder="" class="form-control">
 				
 					<br><br>
 					<label for="password">Mot de passe</label>

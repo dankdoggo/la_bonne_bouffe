@@ -2,7 +2,7 @@
 
 
 require_once '../inc/connect.php';
-session_start();
+
 
 ?>
 
@@ -10,7 +10,7 @@ session_start();
 <html lang="fr">
 
     <head>
-
+    <meta charset="utf-8">
         <!--Icone FontAwesome CDN Bootstrape-->
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous"> 
 
@@ -19,7 +19,7 @@ session_start();
 
 
         <!-- My CSS -->
-        <link href="../css/styles.temp.css" rel="stylesheet">
+        <link href="../css/styles.css" rel="stylesheet">
     </head>
 
     <body>
@@ -32,7 +32,7 @@ session_start();
                 <ul>
 
 
-                    <?php if(empty($_SESSION)): ?>
+                    <!-- <?php if(!empty($_SESSION)): ?> -->
              
                         <a href="my_profile.php"><li>MON PROFIL</li></a>
                         <a href="add_recipe.php"><li>AJOUTER UNE RECETTE<li></a>
@@ -42,7 +42,7 @@ session_start();
                 		
             		
             		
-            		<?php else: ?>
+            		<!-- <?php else: ?> -->
                       
                   		<a href="add_user.php"><li>AJOUTER UN UTILISATEUR</li></a>
                         <a href="list_users.php"><li>LISTE DES UTILISATEURS</li></a>
@@ -50,7 +50,7 @@ session_start();
                         <a href="../list_recipes.php"><li>LISTE RECETTE</li></a>
                         <a href=""><li> <i class="fa fa-user-times"></i> SE DECONNECTER</li></a>
                         
-                	<?php endif;?>
+                	<!-- <?php endif;?> -->
                 	
                 </ul>
             </div>

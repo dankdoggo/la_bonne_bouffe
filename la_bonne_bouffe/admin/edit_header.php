@@ -2,10 +2,11 @@
 
 require_once '../inc/connect.php';
 require_once '../inc/functions.php';
-require_once '../datas.php';
+
 
 $errors = [];
 $post = [];
+$mimeTypeAllow = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'];
 $dirUpload = '../uploads';
 
 if(!empty($_POST)) {
@@ -141,11 +142,12 @@ if(!empty($_POST)) {
 <body>
 <?php include 'header.php'; ?>
 
-<h1 class="text-center text-info"> Editer le slider et les coordonnées</h1>
+<h1 class="text-center"> Editer le slider et les coordonnées</h1>
 
 	<!-- Formulaire permettant d'éditer le header -->
 	<div class="col-sm-6 col-sm-push-3">
-		<h4 class="text-center text-danger">Veuillez uploader des images ne dépassant pas 250px </h4>
+		<h2>Edition des images défilantes de l'accueil</h2>
+		<p class="text-left text-danger">Veuillez uploader des images ne dépassant pas 250px </p>
 		<form method="post" enctype="multipart/form-data">
 			<label for="slider1">Première image</label><br>
 			<input type="file" name="slider1" id="slider1">
@@ -157,6 +159,9 @@ if(!empty($_POST)) {
 			<br>
 			<label for="slider3">Troisième image</label><br>
 			<input type="file" name="slider3" id="slider3">
+
+			<br>
+			<hr>
 
 			<br>
 			<label for="address">Adresse postale</label><br>
