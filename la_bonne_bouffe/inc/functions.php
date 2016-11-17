@@ -49,3 +49,26 @@ function usernameExist($username, $bdd){
 
 	return false;
 }
+
+/**
+* vérifie l'existence d'une adresse e-mail
+*@param obj $bdd La connexion à PDO
+*@param strind l'adresse email qu'on souhaite vérifier
+*@return bool TRUE si l'email existe, false sinon
+*/
+function emailExist($email, $bdd){
+
+	// On vérifie que $email et $bdd ne sois pas vide
+	if(!empty($email) && !empty($bdd)){
+
+		// On effectue la requete
+		$check = $bdd->prepare('SELECT * FROM lbb_users WHERE email = :email');
+		$check->bindValue(':email', $email);
+		if($check->execute()){
+			if($check->fetchColumn() > 0){
+				return true;
+			}
+		}
+	}
+		return false;
+}
