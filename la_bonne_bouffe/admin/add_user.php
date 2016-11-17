@@ -93,6 +93,9 @@ if(!empty($_POST)){
 			
 	</head>
 	<body>
+	<?php if (empty($_SESSION)){
+		header('Location: index.php');
+	} ?>
 	<?php include 'header.php'; ?>
 		
 		<header></header>

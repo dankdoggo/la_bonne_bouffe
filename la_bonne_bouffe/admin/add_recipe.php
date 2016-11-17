@@ -1,9 +1,9 @@
 <?php
-
-session_start();
-
 require_once '../inc/connect.php'; //Ici j'inclus le fichier pour se connecter à SQL
 require_once '../inc/functions.php'; //Ici j'inclus le fichier pour se connecter à mes fonctions
+session_start();
+
+
 
 $errors = [];
 $post = [];
@@ -94,8 +94,11 @@ if(!empty($_POST)){
 	</head>
 
 	<body>
+	<?php if (empty($_SESSION)){
+		header('Location: index.php');
+	} ?>
 
-	<?php include 'header.php'; ?>
+	<?php include 'header.php';?>
 
 		
 			<main class="container">

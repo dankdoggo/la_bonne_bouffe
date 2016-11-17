@@ -77,7 +77,9 @@ else {
 
 
 	<body>
-
+		<?php if (empty($_SESSION)){
+		header('Location: index.php');
+		} ?>
 		<?php include 'header.php';?>
 		<main class="container">
 

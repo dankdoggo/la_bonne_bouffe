@@ -1,7 +1,7 @@
 <?php
 	
 	require_once '../inc/connect.php';
-	
+	session_start();
 
 	if(isset($_GET['id']) && is_numeric($_GET['id'])){ // si l'id est reconu
 
@@ -35,8 +35,10 @@
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	</head>
 <body>
-
-
+<?php if (empty($_SESSION)){
+		header('Location: index.php');
+	} ?>
+	<?php include 'header.php'; ?>
 	<main class="container">
 
 		<h1 class="text-center text-info">

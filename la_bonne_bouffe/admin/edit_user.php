@@ -2,7 +2,7 @@
 
 require_once '../inc/connect.php';
 require_once '../inc/functions.php';
-
+session_start();
 
 $post = [];
 $errors = [];
@@ -114,7 +114,9 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])){ // si l'ID est ok
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	</head>
 	<body>
-		
+		<?php if (empty($_SESSION)){
+		header('Location: index.php');
+		} ?>
 		<?php include 'header.php'; ?>
 
 		<?php if(count($errors) > 0): ?>
