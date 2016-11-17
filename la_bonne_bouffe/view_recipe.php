@@ -17,7 +17,7 @@
 
 	<main>
 		<section id="section-view-recipe">
-			<h1 class="title-section-list">Sushis protéinés</h1>
+			<h1 class="title-section-list">Migales aux oeufs</h1>
 			<div class="contain-img-list-recipe">
 				<img src="img/migale.jpg" alt="migale" class="img-list-recipe">
 			</div>

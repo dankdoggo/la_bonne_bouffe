@@ -1,3 +1,136 @@
+<?php
+
+require_once '../inc/connect.php';
+require_once '../inc/functions.php';
+require_once '../datas.php';
+
+$errors = [];
+$post = [];
+$dirUpload = '../uploads';
+
+if(!empty($_POST)) {
+
+	foreach ($_POST as $key => $value) {
+        $post[$key] = trim(strip_tags($value));
+    }
+
+     // Vérification upload of slider1 (l'admin n'est pas obligé de télécharger les 3 photos en même temps)
+    if(is_uploaded_file($_FILES['slider1']['tmp_name']) || file_exists($_FILES['slider1']['tmp_name'])) {
+     	
+     	// vérification de l'upload et insertion de la photo pour slider 1
+        $finfo = new finfo(); 
+        $mimeType = $finfo->file($_FILES['slider1']['tmp_name'], FILEINFO_MIME_TYPE);
+        
+        if(in_array($mimeType, $mimeTypeAllow)) { // la variable $mimeTypeAllow est dans le fichier datas.php
+            $pictureName = uniqid('picture_');
+            $pictureName.= '.'.pathinfo($_FILES['slider1']['name'], PATHINFO_EXTENSION); // on stocke dans une var $pictureName unidid un point et les informations sur l'extension
+
+            if(!is_dir($dirUpload)){ // is_dir vérifie si le dossier existe dans l'arborescence des dossiers
+                mkdir($dirUpload, 0755); // s'il n'y a pas de dossier existant avec al fonction mk_dir on le crée, 0755 correspond aux droits d'utilisateur
+            }
+
+            if(!move_uploaded_file($_FILES['slider1']['tmp_name'], $dirUpload.$pictureName)){ //move uploaded file permet permet de télécharger le fichier
+                $errors[] = 'Erreur lors de l\'envoi de la première image';
+            }
+        }
+        else {
+            $errors[] = 'Le type de fichier de la première image est invalide. Uniquement jpg/jpeg/gif/png.'; 
+        }
+	}
+
+	// Vérification upload of slider2 (l'admin n'est pas obligé de télécharger les 3 photos en même temps)
+    if(is_uploaded_file($_FILES['slider2']['tmp_name']) || file_exists($_FILES['slider1']['tmp_name'])) {
+     	
+     	// vérification de l'upload et insertion de la photo pour slider 1
+        $finfo = new finfo(); 
+        $mimeType = $finfo->file($_FILES['slider2']['tmp_name'], FILEINFO_MIME_TYPE);
+        
+        if(in_array($mimeType, $mimeTypeAllow)) { // la variable $mimeTypeAllow est dans le fichier datas.php
+            $pictureName = uniqid('picture_');
+            $pictureName.= '.'.pathinfo($_FILES['slider2']['name'], PATHINFO_EXTENSION); // on stocke dans une var $pictureName unidid un point et les informations sur l'extension
+
+            if(!is_dir($dirUpload)){ // is_dir vérifie si le dossier existe dans l'arborescence des dossiers
+                mkdir($dirUpload, 0755); // s'il n'y a pas de dossier existant avec al fonction mk_dir on le crée, 0755 correspond aux droits d'utilisateur
+            }
+
+            if(!move_uploaded_file($_FILES['slider2']['tmp_name'], $dirUpload.$pictureName)){ //move uploaded file permet permet de télécharger le fichier
+                $errors[] = 'Erreur lors de l\'envoi de la deuxième image';
+            }
+        }
+        else {
+            $errors[] = 'Le type de fichier de la deuxième image est invalide. Uniquement jpg/jpeg/gif/png.'; 
+        }
+	}
+
+	// Vérification upload of slider2 (l'admin n'est pas obligé de télécharger les 3 photos en même temps)
+    if(is_uploaded_file($_FILES['slider3']['tmp_name']) || file_exists($_FILES['slider1']['tmp_name'])) {
+     	
+     	// vérification de l'upload et insertion de la photo pour slider 1
+        $finfo = new finfo(); 
+        $mimeType = $finfo->file($_FILES['slider3']['tmp_name'], FILEINFO_MIME_TYPE);
+        
+        if(in_array($mimeType, $mimeTypeAllow)) { // la variable $mimeTypeAllow est dans le fichier datas.php
+            $pictureName = uniqid('picture_');
+            $pictureName.= '.'.pathinfo($_FILES['slider3']['name'], PATHINFO_EXTENSION); // on stocke dans une var $pictureName unidid un point et les informations sur l'extension
+
+            if(!is_dir($dirUpload)){ // is_dir vérifie si le dossier existe dans l'arborescence des dossiers
+                mkdir($dirUpload, 0755); // s'il n'y a pas de dossier existant avec al fonction mk_dir on le crée, 0755 correspond aux droits d'utilisateur
+            }
+
+            if(!move_uploaded_file($_FILES['slider3']['tmp_name'], $dirUpload.$pictureName)){ //move uploaded file permet permet de télécharger le fichier
+                $errors[] = 'Erreur lors de l\'envoi de la troisième image';
+            }
+        }
+        else {
+            $errors[] = 'Le type de fichier de la troisième image est invalide. Uniquement jpg/jpeg/gif/png.'; 
+        }
+	}
+
+
+    if(!minAndMaxLength($post['adress'], 4, 50)) {
+    	$errors[] = 'L\'adresse doit comporter entre 4 et 50 caractères';
+    }
+
+    if(!is_numeric($post['zipcode']) && strlen($post['zipcode']) != 5) {
+    	$errors[] = 'Le code postal doit comporter 5 chiffres';
+    }
+
+    if(!minAndMaxLength($post['city'], 3, 50)) {
+    	$errors[] = 'Le nom de la ville doit comporter entre 3 et 50 caractères';
+    }
+
+    if(!is_numeric($post['phone']) && strlen($post['phone']) != 10) {
+    	$errors[] = 'Le numéro de téléphone doit comporter 10 chiffres';
+    }
+
+    if (isset($errors) && count($errors) == 0) {
+
+       // s'il n'y a pas d'erreur on peut insérer les données dans la base de données
+       $insert = $bdd->prepare('INSERT INTO users (firstname, lastname, email, password, birthdate, picture) VALUES (:firstname_register, :lastname_register, :email_register, :password_register, :birthdate, :picture_register)');
+       
+       $insert->bindValue(':firstname_register', $post['firstname_register']); 
+       $insert->bindValue(':lastname_register', $post['lastname_register']);
+       $insert->bindValue(':email_register', $post['email_register']);
+       $insert->bindValue(':password_register', password_hash($post['password_register'], PASSWORD_DEFAULT));
+       $insert->bindValue(':birthdate', $post['birth_year'].'-'.$post['birth_month'].'-'.$post['birth_day']);
+       $insert->bindValue(':picture_register', $dirUpload.$pictureName);
+
+       if ($insert->execute()) {
+           $registerValid = true;
+       }
+       else {
+            var_dump($insert->errorInfo());
+        }
+
+   } // end of $errors == 0
+   
+
+} // end of if !empty $_POST
+
+
+
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,7 +175,7 @@
 			<input type="text" id="phone" name="phone" class="form-control">
 
 			<br>
-			<input type="submit" value="Soumettre" class="btn btn-primary">
+			<input type="submit" value="Editer" class="btn btn-primary">
 			
 		</form>
 	</div>
