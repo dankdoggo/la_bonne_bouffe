@@ -8,7 +8,7 @@ body{
 	color: black;
 }
 
-a {
+a:hover {
 	text-decoration: none;
 }
 
@@ -71,7 +71,6 @@ a {
 
 #footer a {
 	color: #A9414C;
-	text-decoration: none;
 }
 
 #footer a:hover {

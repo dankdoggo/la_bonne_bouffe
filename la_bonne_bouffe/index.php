@@ -72,7 +72,9 @@
 			        				<img class="img-recipe" src="img/burger.jpg"></img>
 			        			</div>
 							</div>
+							<a href="#">
 							<h2 class="home h2-home text-center">Lire la recette</h2>
+							</a>
 						</div>
 
 						<div class="bloc-recipe">
@@ -81,7 +83,9 @@
 		        					<img class="img-recipe" src="img/burger.jpg"></img>
 		        				</div>
 							</div>
+							<a href="#">
 							<h2 class="home h2-home text-center">Lire la recette</h2>
+							</a>
 						</div>
 
 						<div class="bloc-recipe">
@@ -90,7 +94,9 @@
 		        					<img class="img-recipe" src="img/burger.jpg"></img>
 		        				</div>
 							</div>
+							<a href="#">
 							<h2 class="home h2-home text-center">Lire la recette</h2>
+							</a>
 						</div>
 
 					</div> <!-- fermeture wrapper-recipe -->

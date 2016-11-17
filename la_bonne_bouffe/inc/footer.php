@@ -28,17 +28,17 @@
 				<div class="row">
 					<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 text-right mentions-footer">
 						<div>
-							<a href="https://www.facebook.com">
+							<a href="https://www.facebook.com" target="_blank">
 							<i class="fa fa-3x fa-facebook-square" aria-hidden="true"></i>
 							</a>
 							&nbsp;
 
-							<a href="https://twitter.com/?lang=fr">
+							<a href="https://twitter.com/?lang=fr" target="_blank">
 							<i class="fa fa-3x fa-twitter" aria-hidden="true"></i>
 							</a>
 							&nbsp;
 
-							<a href="https://fr.pinterest.com/">
+							<a href="https://fr.pinterest.com/" target="_blank">
 							<i class="fa fa-3x fa-pinterest-square" aria-hidden="true"></i>
 							</a>
 
