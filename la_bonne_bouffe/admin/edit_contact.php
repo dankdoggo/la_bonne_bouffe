@@ -23,7 +23,7 @@ require_once '../inc/connect.php';
 		$end_strong = '';
 	}
 
-}/*elseif($_SESSION['permission'] === 1){
+/*}elseif($_SESSION['permission'] === 1){
 	//Si l'utilisateur est un éditeur, alors on le redirige vers la liste des recettes
 	header('Location: ../list_recipes.php');
 	die();
