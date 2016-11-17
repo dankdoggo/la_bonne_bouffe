@@ -15,13 +15,13 @@ require_once '../inc/connect.php';
 		var_dump($select->errorInfo());
 	}
 
-	if($messages['is_read'] == 0){
+	/*if($messages['is_read'] == 0){
 		$start_strong = '<strong>';
 		$end_strong = '</strong>';
 	}else{
 		$start_strong = '';
 		$end_strong = '';
-	}
+	}*/
 
 /*}elseif($_SESSION['permission'] === 1){
 	//Si l'utilisateur est un éditeur, alors on le redirige vers la liste des recettes
@@ -65,6 +65,17 @@ require_once '../inc/connect.php';
 				<?php 
 					if(!empty($messages)){
 						foreach ($messages as $message) {
+
+							if($message['is_read'] == 0){
+								$start_strong = '<strong>';
+								$end_strong = '</strong>';
+							}else{
+								$start_strong = '';
+								$end_strong = '';
+							}
+								
+							
+
 							echo $start_strong;
 								echo '<tr>';
 									echo '<td class="text-center">'.$message['firstname'].'</td>';
