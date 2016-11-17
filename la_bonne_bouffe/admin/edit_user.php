@@ -86,10 +86,10 @@ if(!empty($_POST)){
 	}
 
 }
-	if(isset($_GET['id']) && is_numeric($_GET['id'])){
+	if(isset($_SESSION['id']) && is_numeric($_SESSION['id'])){
 
 	$select = $bdd->prepare('SELECT * FROM lbb_users WHERE id = :id');
-	$select->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
+	$select->bindValue(':id', $_SESSION['id'], PDO::PARAM_INT);
 	if($select->execute()){
 		$user = $select->fetch(PDO::FETCH_ASSOC);
 	}
