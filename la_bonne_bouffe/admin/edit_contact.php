@@ -15,7 +15,7 @@ require_once '../inc/connect.php';
 		var_dump($select->errorInfo());
 	}
 
-	if($messages['is_read'] === 0){
+	if($messages['is_read'] == 0){
 		$start_strong = '<strong>';
 		$end_strong = '</strong>';
 	}else{
