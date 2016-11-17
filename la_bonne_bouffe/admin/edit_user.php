@@ -33,7 +33,7 @@ if(!empty($_POST)){
 		}
 	}
 
-	if(is_uploaded_file($_FILES['avatar']['tmp_name']) && file_exists($_FILES['avatar']['tmp_name'])){
+	if(isset($_FILES['avatar']) && is_uploaded_file($_FILES['avatar']['tmp_name']) && file_exists($_FILES['avatar']['tmp_name'])){
 		$finfo = new finfo();
 		$mimeType = $finfo->file($_FILES['avatar']['tmp_name'], FILEINFO_MIME_TYPE);
 		
@@ -60,7 +60,7 @@ if(!empty($_POST)){
 	if(count($errors) === 0){
 
 
-		$columnSQL = 'firstname = :firstname, lastname = :lastname, email = :email, '; // on instencie la variable $column qui contiendra les informations utilisateurs stockées dans la bdd
+		$columnSQL = 'firstname = :firstname, lastname = :lastname, email = :email '; // on instencie la variable $column qui contiendra les informations utilisateurs stockées dans la bdd
 
 		if($updatePassword){
 			$columnSQL.= ', password = :password'; // variable $updatePassword qui contient les infos concaténés + le mdp
@@ -70,7 +70,7 @@ if(!empty($_POST)){
 			$columnSQL.= ', avatar = :avatar'; // variable $updatePassword qui contient les infos concaténés + l'avatar 
 		}
 
-		$update = $bdd->prepare('UPDATE lbb_users SET '.$columnSQL.' WHERE id = :idUser'); // requete SQl par ID
+		$update = $bdd->prepare('UPDATE lbb_users SET '.$columnSQL.' WHERE id = :id'); // requete SQl par ID
 		$update->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
 		$update->bindValue(':firstname', $post['firstname']);
 		$update->bindValue(':lastname', $post['lastname']);
@@ -159,7 +159,7 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])){ // si l'ID est ok
 					<input type="file" name="avatar" id="avatar" value="<?=$user['avatar'];?>" class="input-file" accept="image/*">
 
 					<br><br>
-					<input type="submit" id="submit" value="editer les informations" class="btn btn-primary">
+					<input type="submit" value="editer les informations" class="btn btn-primary">
 
 				</form>
 
