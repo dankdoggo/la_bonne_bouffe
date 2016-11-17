@@ -1,3 +1,79 @@
+<?php
+
+require_once 'inc/connect.php';
+require_once 'inc/functions.php';
+
+
+$post = [];
+$errors = [];
+$mimeTypeAllow = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'];
+$dirUpload = 'uploads/';
+
+if(!empty($_POST)){
+	$post = array_map('trim', array_map('strip_tags', $_POST)); 
+
+
+
+	if(!filter_var($post['email'], FILTER_VALIDATE_EMAIL)){
+		$errors[] = 'Votre email est invalide';
+	}
+
+	if(!empty($post['password'])){
+		$updatePassword = true;
+		if(!minAndMaxLength($post['password'], 6, 20)){
+			$errors[] = 'Votre mot de passe doit comporter entre 6 et 20 caractères';
+		}
+	}
+
+
+	if(is_uploaded_file($_FILES['avatar']['tmp_name']) && file_exists($_FILES['avatar']['tmp_name'])){
+		$finfo = new finfo();
+		$mimeType = $finfo->file($_FILES['avatar']['tmp_name'], FILEINFO_MIME_TYPE);
+		
+		if(in_array($mimeType, $mimeTypeAllow)){
+			$avatarName = uniqid('avatar_');
+			$avatarName.= '.'.pathinfo($_FILES['avatar']['name'], PATHINFO_EXTENSION);
+
+			if(!is_dir($dirUpload)){
+				mkdir($dirUpload, 0755);
+			}
+
+
+			if(!move_uploaded_file($_FILES['avatar']['tmp_name'], $dirUpload.$avatarName)){
+				$errors[] = 'Erreur lors de l\'envoi de votre avatar';
+			}
+		}
+		else{
+			$errors[] = 'Le type de fichier est invalide. Uniquement jpg/gif/png.'; 
+		}
+
+		$updateAvatar = true;
+	}
+
+	if(count($errors) === 0){
+
+
+		
+		$update = $bdd->prepare('UPDATE lbb_users SET email = :email, password = : password, avatar = :avatar WHERE id = :idUser'); // requete SQl par ID
+		
+		$update->bindValue(':idUser', $_GET['id'], PDO::PARAM_INT);
+		$update->bindValue(':email', $post['email']);
+		$update->bindValue(':password', password_hash($post['password'], PASSWORD_DEFAULT));
+		$update->bindValue(':avatar', $dirUpload.$avatarName); 
+	
+
+
+
+		if($update->execute()){
+			$formValid = true;
+		}
+		else {
+			var_dump($update->errorInfo());
+		}
+	}
+
+}
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -17,8 +93,7 @@
 
 				<form method="post">
 					
-					<label for="username">Pseudo</label>
-					<input type="text" name="username" id="username" class="form-control">
+					
 				
 					<br><br>
 					<label for="password">Mot de passe</label>
