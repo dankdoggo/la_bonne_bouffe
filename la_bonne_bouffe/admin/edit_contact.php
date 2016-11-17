@@ -42,47 +42,45 @@ require_once '../inc/connect.php';
 <main class="container">
 <h1 class="text-center text-info">Liste des messages</h1>
 	
-	<!-- Formulaire permettant d'éditer le header -->
-	<div class="col-sm-6 col-sm-push-3">
-		<table class="table">
-			<thead>
-				<tr>
-					<th class="text-center">Prénom</th>
-					<th class="text-center">Nom</th>
-					<th class="text-center">Email</th>
-					<th class="text-center">Message</th>
-					<th class="text-center">Lire le message</th>
-					<th class="text-center">Supprimer</th>
-				</tr>
-			</thead>
-			<tbody>
-				<?php 
-					if(!empty($messages)){
-						foreach ($messages as $message) {
+	<!-- Liste des messages -->
+	<table class="table">
+		<thead>
+			<tr>
+				<th class="text-center">Prénom</th>
+				<th class="text-center">Nom</th>
+				<th class="text-center">Email</th>
+				<th class="text-center">Message</th>
+				<th class="text-center">Lire le message</th>
+				<th class="text-center">Supprimer</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php 
+				if(!empty($messages)){
+					foreach ($messages as $message) {
 
-							if($message['is_read'] == 0){
-								$bold = ' style="font-weight:bold;"';
-							}elseif($message['is_read'] == 1){
-								//Sinon, affichage normal
-								$bold = '';
-							}
-							echo '<tr>';
-								echo '<td class="text-center"'.$bold.'>'.$message['firstname'].'</td>';
-								echo '<td class="text-center"'.$bold.'>'.$message['lastname'].'</td>';
-								echo '<td class="text-center"'.$bold.'>'.$message['email'].'</td>';
-								echo '<td class="text-center"'.$bold.'>'.substr($message['message'], 0, 10).'...</td>';
-								echo '<td class="text-center"><a href="view_mail.php?id='.$message['id'].'">Voir</a></td>';
-								echo '<td class="text-center"><a href="delete_message.php?id='.$message['id'].'"<span class="glyphicon glyphicon-remove alert alert-danger"></span></a></td>';
-							echo '</tr>';
-									
+						if($message['is_read'] == 0){
+							$bold = ' style="font-weight:bold;"';
+						}elseif($message['is_read'] == 1){
+							//Sinon, affichage normal
+							$bold = '';
 						}
-					}else{
-						echo '<p class="alert alert-danger">Aucun message</p>';
+						echo '<tr>';
+							echo '<td class="text-center"'.$bold.'>'.$message['firstname'].'</td>';
+							echo '<td class="text-center"'.$bold.'>'.$message['lastname'].'</td>';
+							echo '<td class="text-center"'.$bold.'>'.$message['email'].'</td>';
+							echo '<td class="text-center"'.$bold.'>'.substr($message['message'], 0, 10).'...</td>';
+							echo '<td class="text-center"><a href="view_mail.php?id='.$message['id'].'">Voir</a></td>';
+							echo '<td class="text-center"><a href="delete_message.php?id='.$message['id'].'"<span class="glyphicon glyphicon-remove alert alert-danger"></span></a></td>';
+						echo '</tr>';
+								
 					}
-				?>	
-			</tbody>
-		</table>
-	</div>
+				}else{
+					echo '<p class="alert alert-danger">Aucun message</p>';
+				}
+			?>	
+		</tbody>
+	</table>
 </main>	
 </body>
 </html>
