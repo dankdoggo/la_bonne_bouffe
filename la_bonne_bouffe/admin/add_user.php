@@ -120,9 +120,11 @@ if(!empty($_POST)){
 					<label for="username">Pseudo</label>
 					<input type="text" name="username" id="username" placeholder="" class="form-control">
 
+					<br><br>
 					<label for="lastname">Nom</label>
 					<input type="text" name="lastname" id="lastname" placeholder="" class="form-control">
 
+					<br><br>
 					<label for="firstname">Prénom</label>
 					<input type="text" name="firstname" id="firstname" placeholder="" class="form-control">
 				

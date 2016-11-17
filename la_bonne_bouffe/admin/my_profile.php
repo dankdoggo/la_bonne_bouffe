@@ -25,7 +25,7 @@ if(isset($_SESSION['id']) && is_numeric($_SESSION['id'])){
     </head>
 	<body>
 		
-		<header><?php include 'header.php'; ?></header>
+		<?php include 'header.php'; ?>
 
 		<main class="container">
 
