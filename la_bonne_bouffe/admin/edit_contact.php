@@ -5,7 +5,7 @@ session_start();
 require_once '../inc/connect.php';
 
 //Si l'utilisateur connecté est un administrateur, alors on lui affiche la liste des messages
-if($_SESSION['permission'] === 2){
+if($_SESSION['permission'] === 1){
 
 	//Récupération des mails
 	$select = $bdd->prepare('SELECT * FROM lbb_users');
