@@ -1,10 +1,18 @@
 <?php
 	//  Voir jc pour les affichage selonn permission
-	$test = [
+	require_once '../inc/connect.php';
+	session_start();
 
-		'permission'=> 2,
 
-	];
+$query = $bdd->prepare('SELECT * FROM lbb_users');
+if($query->execute()){
+	$users = $query->fetchAll(PDO::FETCH_ASSOC);
+}
+else {
+	// A des fins de debug si la requète SQL est en erreur
+	var_dump($query->errorInfo());
+	die;
+}
 
 	?>
 
@@ -13,7 +21,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Liste des utilisateur</title>
+		<title>Liste des utilisateurs</title>
 		 <!--Feuille de style Bootstrape-->
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	</head>
@@ -21,7 +29,7 @@
 	<?php include 'header.php'; ?>
 		<main class="container">
 
-			<h1 class="text-center text-info">Liste utilisateur</h1>
+			<h1 class="text-center text-info">Liste utilisateurs</h1>
 			
 				<table class="table">
 					<thead>
@@ -34,21 +42,21 @@
 					</thead>
 
 					<tbody>
+						<?php foreach($users as $user): ?>
 						<tr>
-							<td class="text-center">loulou</td>
-							<td class="text-center"><?php if($test['permission'] === 1){
-										echo 'éditeur';
-									}
-									
-									else{
-										echo 'admin';
-									}
+							<td class="text-center"><?=$user['username']; ?></td>
+							<td class="text-center"><!-- <?=$user['permission']; ?> -->
 
-									?>
+								<?php if($user['permission'] == 1): ?>
+										&Eacutediteur
+								<?php else: ?>
+										Administrateur
+								<?php endif;?>		
+
 								</td>
-							<td class="text-center">lou@boutin.fr</td>
+							<td class="text-center"><?=$user['email']; ?></td>
 							<td class="text-center">
-								<a href="my_profile.php?id=<?=$user['id'];?>" class="text-success" title="Voir le profil de l'utilisateur">
+								<a href="view_user.php?id=<?=$user['id'];?>" class="text-success" title="Voir le profil de l'utilisateur">
 								<i class="fa fa-user-circle-o"></i> Visualiser
 								</a>
 								&nbsp; - &nbsp;
@@ -66,7 +74,7 @@
 							</td>
 						</tr>
 
-
+					<?php endforeach; ?>
 					</tbody>
 				</table>
 		</main>

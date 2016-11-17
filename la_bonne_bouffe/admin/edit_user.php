@@ -103,16 +103,17 @@ if(!empty($_POST)){
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	</head>
 	<body>
+	<header>
 		<?php include 'header.php'; ?>
-		<header></header>
+	</header>
 
 		<main>
 
 		 	<div class="col-sm-6 col-sm-push-3">
 
-				<h1 text-center text-info>Modifier un compte utlisateur</h1>
+				<h1 text-center text-info>Modifier un compte utilisateur</h1>
 
-				<form method="post">
+				<form method="post" enctype="multipart/form-data">
 					
 					
 				
