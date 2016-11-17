@@ -1,3 +1,30 @@
+<?php
+	
+	require_once '../inc/connect.php';
+	
+
+	if(isset($_GET['id']) && is_numeric($_GET['id'])){ // si l'id est reconu
+
+	if(!empty($_POST)){
+		if(isset($_POST['delete'])){  // si on clique sur l'input delete 
+			$delete = $bdd->prepare('DELETE FROM lbb_users WHERE id = :id'); // préparation requete SQL de supression d'un user
+			$delete->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
+
+			if($delete->execute()){
+				header('Location: edit_contact.php'); // si la supression s'effectue, on affiche la liste des users
+				die;
+			}
+		}
+	}
+
+	$select = $bdd->prepare('SELECT * FROM lbb_users WHERE id = :id');
+	$select->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
+	if($select->execute()){
+		$user = $select->fetch(PDO::FETCH_ASSOC); // on stock nos résultats dans $user
+	}
+}
+
+?>
 <!DOCTYPE html>
 <html>
 	<head>

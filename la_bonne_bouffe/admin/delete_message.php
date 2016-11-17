@@ -1,11 +1,7 @@
 <?php
 	
 	require_once '../inc/connect.php';
-	//  Voir jc pour les affichage selonn permission
-	$test = [
-
-		'permission'=> 2,
-		];
+	
 
 	if(isset($_GET['id']) && is_numeric($_GET['id'])){ // si l'id est reconu
 

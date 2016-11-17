@@ -121,10 +121,10 @@ else {
 						<td><?= ucfirst($value['author']);?></td>
 						<td><?=$value['date_publish'];?></td>
 						<td>
-							<a href="edit_recipe.php?id=<?=$recipe['id'];?>"> 
+							<a href="edit_recipe.php?id=<?=$value['id'];?>"> 
 							<i class="fa fa-pencil"></i> Modifier</a>
 						</td>
-						<td><a style="color:red" href="delete_recipe.php?id=<?=$recipe['id'];?>"> 
+						<td><a style="color:red" href="delete_recipe.php?id=<?=$value['id'];?>"> 
 							<i class="fa fa-trash"></i> Supprimer</a>
 						</td>
 
