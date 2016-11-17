@@ -4,8 +4,9 @@ session_start();
 
 require_once '../inc/connect.php';
 
+
 //Si l'utilisateur connecté est un administrateur, alors on lui affiche la liste des messages
-if($_SESSION['permission'] === 2){
+/*if($_SESSION['permission'] === 2){*/
 
 	//Récupération des mails
 	$select = $bdd->prepare('SELECT * FROM lbb_contact');
@@ -16,16 +17,18 @@ if($_SESSION['permission'] === 2){
 	}
 
 	//On prépare l'affichage des messages non lu (en gras)
-	if($messages['is_read'] == 0){
-		$start_strong = '<strong>';
-		$end_strong = '</strong>';
-	}else{
-		//Sinon, affichage normal
-		$start_strong = '';
-		$end_strong = '';
-	}
+	foreach ($messages as $control) {
 
-}elseif($_SESSION['permission'] === 1){
+		if($control['is_read'] == 0){
+			$bold = ' style="font-weight:bold;"';
+		}elseif($control['is_read'] == 1){
+			//Sinon, affichage normal
+			$bold = '';
+		}
+	}
+	
+
+/*}elseif($_SESSION['permission'] === 1){
 	//Si l'utilisateur est un éditeur, alors on le redirige vers la liste des recettes
 	header('Location: ../list_recipes.php');
 	die();
@@ -34,7 +37,7 @@ if($_SESSION['permission'] === 2){
 	//Et s'il n'est rien, on le redirige vers la page de connexion 
 	header('Location: index.php');
 	die();
-}
+}*/
 
 
 ?>
@@ -48,8 +51,9 @@ if($_SESSION['permission'] === 2){
 <body>
 <?php include 'header.php'; ?>
 
+<main class="container">
 <h1 class="text-center text-info">Liste des messages</h1>
-
+	
 	<!-- Formulaire permettant d'éditer le header -->
 	<div class="col-sm-6 col-sm-push-3">
 		<table class="table">
@@ -59,7 +63,7 @@ if($_SESSION['permission'] === 2){
 					<th class="text-center">Nom</th>
 					<th class="text-center">Email</th>
 					<th class="text-center">Message</th>
-					<th class="text-center">Lu</th>
+					<th class="text-center">Lire le message</th>
 					<th class="text-center">Supprimer</th>
 				</tr>
 			</thead>
@@ -69,11 +73,11 @@ if($_SESSION['permission'] === 2){
 						foreach ($messages as $message) {
 
 							echo '<tr>';
-								echo '<td class="text-center">'.$start_strong.$message['firstname'].$end_strong.'</td>';
-								echo '<td class="text-center">'.$start_strong.$message['lastname'].$end_strong.'</td>';
-								echo '<td class="text-center">'$start_strong.$message['email'].$end_strong.'</td>';
-								echo '<td class="text-center">'.$start_strong.substr($message['message'], 0, 10).$end_strong.'</td>';
-								echo '<td class="text-center"><span class="glyphicon glyphicon-ok alert alert-success"></span></td>';
+								echo '<td class="text-center"'.$bold.'>'.$message['firstname'].'</td>';
+								echo '<td class="text-center"'.$bold.'>'.$message['lastname'].'</td>';
+								echo '<td class="text-center"'.$bold.'>'.$message['email'].'</td>';
+								echo '<td class="text-center"'.$bold.'>'.substr($message['message'], 0, 10).'...</td>';
+								echo '<td class="text-center"><a href="view_mail.php?id='.$message['id'].'">Voir</a></td>';
 								echo '<td class="text-center"><span class="glyphicon glyphicon-remove alert alert-danger"></span></td>';
 							echo '</tr>';
 									
@@ -85,5 +89,6 @@ if($_SESSION['permission'] === 2){
 			</tbody>
 		</table>
 	</div>
+</main>	
 </body>
 </html>
