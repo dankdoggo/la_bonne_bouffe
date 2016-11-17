@@ -51,6 +51,14 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])){
                                         <?=$user['username'];?>
                                     </li>
                                     <li>
+                                        <strong>Nom :</strong>
+                                        <?=$user['firstname'];?>
+                                    </li>
+                                    <li>
+                                        <strong>Prénom :</strong>
+                                        <?=$user['lastname'];?>
+                                    </li>
+                                    <li>
                                     	<strong>Email :</strong>
                                         
                                         <?=$user['email'];?>

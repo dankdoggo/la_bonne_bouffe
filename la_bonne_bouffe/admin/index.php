@@ -51,7 +51,7 @@ if(!empty($_POST)){
 						}
 							
 					}else{
-						header('Location: index.php');
+						header('Location: my_profile.php');
 					}
 			}
 			else {
