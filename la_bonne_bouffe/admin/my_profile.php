@@ -17,6 +17,9 @@
 
 				<ul>
 					<li>
+						<strong>pseudo :</strong> <!-- ajouter le php  -->
+					</li>
+					<li>
 						<strong>email :</strong> <!-- ajouter le php  -->
 					</li>
 					<li>
