@@ -1,3 +1,40 @@
+<?php
+
+require_once 'inc/connect.php';
+require_once 'inc/functions.php';
+
+$get =[];
+$sql='';
+
+
+
+/*PHP module de recherche*/
+
+if (!empty($_GET)) {
+	    foreach ($_GET as $key => $value) { 
+        $get[$key] = trim(strip_tags($value));
+    } 
+
+    if (isset($get['search']) && !empty($get['search'])) {
+    	$sql =' WHERE title LIKE :search OR content LIKE :search';
+    }
+
+} /*fermeture première condition !empty $_GET*/
+
+$search = $bdd->prepare('SELECT * FROM lbb_recipe'.$sql);
+
+if(!empty($sql)){
+	$search->bindValue(':search', '%'.$get['search'].'%');
+}
+
+if ($search->execute()) {
+	$resultSearch = $search->fetchALL(PDO::FETCH_ASSOC);
+}
+else {
+	var_dump($search->errorInfo());
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,60 +73,28 @@
 
 			<div class="container">
 				<div class="row">
-					
-						<a href="#" class="linkRecipe">
-						<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 contain-img-text-list-recipe">
-							<div class="title-list-recipe">Coco choco roulé</div>
-							<div class="contain-img-list-recipe">
-								<img src="img/roule-coco-choco.jpg" alt="roule-coco-choco" class="img-list-recipe">
-							</div>
-						</div>
-						</a>
-
-						<a href="#">
-						<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 contain-img-text-list-recipe">
-							<div class="title-list-recipe">Croziflette de ta grand mère</div>
-							<div class="contain-img-list-recipe">
-								<img src="img/croziflette.jpg" alt="croziflette" class="img-list-recipe">
-							</div>
-						</div>
-						</a>
-
-						<a href="#">
-						<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 contain-img-text-list-recipe">
-							<div class="title-list-recipe">Détox Water</div>
-							<div class="contain-img-list-recipe">
-								<img src="img/lemon.jpg" alt="detox-water" class="img-list-recipe">
-							</div>
-						</div>
-						</a>
-					
-						<a href="#">
-						<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 contain-img-text-list-recipe">
-							<div class="title-list-recipe">Des bonnes migales</div>
-							<div class="contain-img-list-recipe">
-								<img src="img/migale.jpg" alt="migale" class="img-list-recipe">
-							</div>
-						</div>
-						</a>
-
-						<a href="#">
-						<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 contain-img-text-list-recipe">
-							<div class="title-list-recipe">Du gâteau vert</div>
-							<div class="contain-img-list-recipe">
-								<img src="img/cake.jpg" alt="cake-vert" class="img-list-recipe">
-							</div>
-						</div>
-						</a>
-
-						<a href="#">
-						<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 contain-img-text-list-recipe">
-							<div class="title-list-recipe">Sushis protéinés</div>
-							<div class="contain-img-list-recipe">
-								<img src="img/sushi.jpg" alt="sushi" class="img-list-recipe">
-							</div>
-						</div>
-						</a>	
+				<!--Affichage des recettes-->
+					<?php foreach ($resultSearch as $value):?> 
+						<?php if(isset($get['search']) && !empty($get['search'])) :?> <!--Si une recherche est rentrée, on affiche les résultats de la recette-->
+							<a href="view_recipe.php?id=<?=$value['id']?>" class="linkRecipe">
+							<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 contain-img-text-list-recipe">
+								<div class="title-list-recipe"><?=preg_replace('/'.$get['search'].'/', '<span style="background:yellow;">'.$get['search'].'</span>', $value['title']);?></div>
+								<div class="contain-img-list-recipe">
+									<img src="<?=$value['picture'];?>" alt="recipe" class="img-list-recipe">
+								</div>	
+							</div>	
+							</a>
+						<?php else : ?>
+							<a href="view_recipe.php?id=<?=$value['id']?>" class="linkRecipe">
+							<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 contain-img-text-list-recipe">
+								<div class="title-list-recipe"><?=$value['title'];?></div>
+								<div class="contain-img-list-recipe">
+									<img src="<?=$value['picture'];?>" alt="recipe" class="img-list-recipe">
+								</div>	
+							</div>	
+							</a>	
+						<?php endif?>	
+					<?php endforeach; ?>		
 				</div>
 			</div>
 
