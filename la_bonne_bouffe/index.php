@@ -100,8 +100,9 @@
 
 				<section id="section-link-recipe">
 
-					<div class="link-recipe center-block"> Découvrir toutes nos recettes de Chef </div>
-
+					<a href="list_recipe.php" id="link-recipe-style">
+					<div class="link-recipe center-block"> Découvrir toutes les recettes du Chef </div>
+					</a>
 					
 				</section>
 

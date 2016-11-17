@@ -8,6 +8,10 @@ body{
 	color: black;
 }
 
+a {
+	text-decoration: none;
+}
+
 .wrapper {
 	max-width: 100%;
 	width: 75em;
@@ -35,10 +39,12 @@ body{
 	font-family: 'Source Sans Pro', sans-serif;
 	color: #EBEBE8;
 	font-size: 1em;
+	font-style: italic;
 }
 
 .bloc-contact{
 	padding-left: 2em;
+	line-height: 2.1em;
 }
 
 
@@ -54,11 +60,28 @@ body{
 
 #footer {
 	background-color: #505050;
-	text-align: center;
 	color: #EBEBE8;
 	font-size: 1em;
 	padding: 0.4em;
 }
+
+.peace {
+	color: #A9414C;
+}
+
+#footer a {
+	color: #A9414C;
+	text-decoration: none;
+}
+
+#footer a:hover {
+	color: white;
+}
+
+.mentions-footer {
+	padding-top: 2em;
+}
+
 
 /*******TITRES index.php***********/
 
@@ -146,6 +169,10 @@ body{
 	margin-bottom: 2em;
 }
 
+#link-recipe-style:hover {
+	text-decoration: none;
+}
+
 .bloc-recipe{
 	display: flex;
 	flex-direction: column;
@@ -212,7 +239,7 @@ body{
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	padding: 1em 0;
+	padding: 1em 0 2em 0;
 }
 
 .title-list-recipe {

@@ -99,19 +99,7 @@ if (!empty($_POST)) {
 	<body>
 		<div class="wrapper"> <!-- Wrapper comprenant header + main + footer -->
 	       
-	        <header id="header">
-	        	<div class="bloc-contact">
-	        		<div class="titre-contact"><strong>La bonne bouffe</strong></div>
-	        		<div class="info-contact"> 1 rue de l'avenue - 33000 Bordeaux </div>
-	        		<div class="info-contact"> 01.23.45.67.89</div>
-	        	</div>
-
-	      	 	<nav></nav>
-
-	      	 	<div class="nous-contacter">Nous contacter</div>
-	        	
-	        </header>
-
+	        <?php include_once 'inc/header.php'; ?>	
 
 			<main>
 
@@ -185,25 +173,11 @@ if (!empty($_POST)) {
 
 
 
-			<footer id="footer">
-
-				<div>Mentions Légales</div>
-				<div>Made with &hearts; by Group 3</div>
-				<div>PICTO FB</div>
-
-			</footer>
+			<?php include_once 'inc/footer.php'; ?>
 
 
 
 		</div>
-
-
-
-
-
-
-	     </div> <!-- fermeture wrapper comprenant header + main + footer -->  
-
 
 	</body>
 
