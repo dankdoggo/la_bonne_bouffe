@@ -1,7 +1,7 @@
 <?php
 	
 	require_once '../inc/connect.php';
-	
+	session_start();
 
 	if(isset($_GET['id']) && is_numeric($_GET['id'])){ // si l'id est reconu
 
