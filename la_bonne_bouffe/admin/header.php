@@ -10,42 +10,50 @@ session_start();
 <html lang="fr">
 
     <head>
+
+        <!--Icone FontAwesome CDN Bootstrape-->
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous"> 
+
+        <!--CDN Normalize-->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.css" rel="stylesheet">
+
+
         <!-- My CSS -->
-        <link href="css/styles.temp.css" rel="stylesheet">
+        <link href="../css/styles.temp.css" rel="stylesheet">
     </head>
 
     <body>
 
-        <nav>
+        <nav class="wrapper-header-back">
 
-            <div>LOGO</div>
+            <div id="logo">LOGO</div>
 
-            <ul>
+            <div class="menu-header-back">
+                <ul>
 
 
-                <?php if(empty($_SESSION)): ?>
-         
-                    <li><a class="navbar-brand text-left" href="my_profile.php">Mon Profil</a></li>
-                    <li><a class="navbar-brand text-left" href="add_recipe.php">Ajouter une recette</a></li>
-                    <li><a class="navbar-brand" href="index.php">Connexion</a></li>
-                        
-        
+                    <?php if(empty($_SESSION)): ?>
+             
+                        <a href="my_profile.php"><li>MON PROFIL</li></a>
+                        <a href="add_recipe.php"><li>AJOUTER UNE RECETTE<li></a>
+                        <a href="index.php"><li><i class="fa fa-user"></i> SE CONNECTER</li></a>
+                            
+            
+                		
             		
-        		
-        		
-        		<?php else: ?>
-                  
-              		<li> <a class="navbar-brand" href="add_user.php">Ajouter un utilisateur</a></li>
-                    <li><a class="navbar-brand" href="list_users.php">Liste des utilisateurs</a></li>
-                    <li><a class="navbar-brand" href="edit_header.php">&Eacute;dition page d'accueil</a></li>
-                    <li><a class="navbar-brand" href="../list_recipes.php">Liste des recettes</a></li>
-                    <li><a class="navbar-brand" href="">Déconnexion</a></li>
-                    
-            	<?php endif; ?>
-            	
-            </ul>
-
-
+            		
+            		<?php else: ?>
+                      
+                  		<a href="add_user.php"><li>AJOUTER UN UTILISATEUR</li></a>
+                        <a href="list_users.php"><li>LISTE DES UTILISATEURS</li></a>
+                        <a href="edit_header.php"><li>EDITER SLIDER</li></a>
+                        <a href="../list_recipes.php"><li>LISTE RECETTE</li></a>
+                        <a href=""><li> <i class="fa fa-user-times"></i> SE DECONNECTER</li></a>
+                        
+                	<?php endif;?>
+                	
+                </ul>
+            </div>
 
         </nav>
 
