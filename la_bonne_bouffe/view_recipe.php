@@ -36,7 +36,7 @@ if(isset($_GET['id']) && is_numeric($_GET['id']) && !empty($_GET['id'])){
 
 	<main>
 	<?php if(empty($recipe)):?>
-		<p class="jumbotron text-center alert-danger">La recette n'existe pas </p>
+		<?php header('Location: 404.php'); ?>
 	<?php else:?>	
 		<section id="section-view-recipe">
 			<h1 class="title-section-list"><?=$recipe['title'];?></h1>
