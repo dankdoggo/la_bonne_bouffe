@@ -2,8 +2,8 @@
 
 session_start();
 
-require_once '../inc/connect.php'; //Ici j'inclus le fichier pour se connecter à SQL
-require_once '../inc/functions.php'; //Ici j'inclus le fichier pour se connecter à mes fonctions
+require_once '../inc/connect.php'; 
+require_once '../inc/functions.php'; 
 
 $errors = [];
 $post = [];
@@ -120,19 +120,22 @@ if(!empty($_POST)){
 					<br>
 					<input type="text" name="title-take" class="form-control" placeholder="Ex: Risotto de Saint Jacques et Chorizo">
 
+					<br><br>
 
 					<label  class="text-center text-info">Description:</label>
 					<br>
 					<textarea name="content-take" class="form-control" placeholder="Ex: Pour préparer la recette du Risotto de Saint Jacques et Chorizo il vous faut : ..."></textarea>
+
+					<br><br>
 							
 					<label class="text-center text-info">Photo:</label>
 					<br>
-					<input type="file" name="picture-take" class="input-file" accept="image/*">
+					<input type="file" name="picture-take" class="btn btn-default btn-lg" accept="image/*">
 
-					<br>
+					<br><br>
 
 					<div id="Boutton" class="center-block">
-						<button type="submit">Enregistrer</button>
+						<button type="submit" class="btn btn-primary">Enregistrer</button>
 					</div>
 
 					</form>

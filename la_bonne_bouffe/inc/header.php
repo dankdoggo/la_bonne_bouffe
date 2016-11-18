@@ -7,7 +7,7 @@
 		<div class="bloc-contact">
 		<a href="index.php">
 	  		<div class="titre-contact"><strong>La bonne bouffe</strong></div>
-	  		<div class="info-contact"> Le restaurant qui vous faut </div>
+	  		<div class="info-contact"> Le restaurant qu'il vous faut </div>
 	  	</a>
 	  	</div>
 
