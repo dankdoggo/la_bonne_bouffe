@@ -411,3 +411,24 @@ a{
 	text-decoration: none;
 	background-color: #A9414C;
 }
+
+/*LA 404 QUE TU VEUX METTRE SUR TA CASSETTE***********/
+.error_404{
+	position: relative;
+	background-image: url(../img/background.gif);
+	background-repeat:no-repeat;
+	background-size: cover;
+	height:38em;
+	width:100%;
+}
+
+.error_message{
+	color:white;
+	font-size:3em;
+	margin:4em 5em;
+	padding:0.2em;
+	position:absolute;
+	text-align: center;
+	background-color:rgba(0,0,0,0.2);
+	border-radius: 3px;
+}

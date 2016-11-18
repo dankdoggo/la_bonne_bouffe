@@ -2,6 +2,10 @@
 
 session_start();
 
+if(empty($_SESSION)){
+	header('Location: index.php');
+}
+
 require_once '../inc/connect.php'; 
 require_once '../inc/functions.php'; 
 
@@ -84,20 +88,23 @@ if(!empty($_POST)){
 
 <!DOCTYPE html>
 <html lang="fr">
+
 	<head>
 		<meta charset="utf-8">
 		<title>Ajouter une recette</title>
+
 		 <!--Feuille de style Bootstrape-->
+
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<!-- My CSS -->
-        <link href="css/styles.css" rel="stylesheet">
+        <link href="../css/styles.css" rel="stylesheet">
 	</head>
 
 	<body>
 
 	<?php include 'header.php'; ?>
 
-		
+
 			<main class="container">
 
 				<h1 class="text-center">Enregistrer une nouvelle recette</h1>
