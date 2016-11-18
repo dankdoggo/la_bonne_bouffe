@@ -3,7 +3,7 @@
 	require_once '../inc/connect.php';
 	session_start();
 
-	var_dump($_SESSION);
+
 
 $query = $bdd->prepare('SELECT * FROM lbb_users');
 if($query->execute()){
@@ -34,7 +34,7 @@ else {
 		<main class="container">
 
 			<h1 class="text-center text-info">Liste utilisateurs</h1>
-			
+
 				<table class="table">
 					<thead>
 						<tr>
@@ -55,7 +55,7 @@ else {
 										&Eacutediteur
 								<?php else: ?>
 										Administrateur
-								<?php endif;?>		
+								<?php endif;?>
 
 								</td>
 							<td class="text-center"><?=$user['email']; ?></td>
@@ -70,7 +70,7 @@ else {
 									<i class="fa fa-edit"></i> Editer
 								</a>
 								&nbsp; - &nbsp;
-								
+
 								<a href="delete_user.php?id=<?=$user['id'];?>" class="text-danger" title="Supprimer cet utilisateur">
 									<i class="fa fa-times"></i> Supprimer
 								</a>

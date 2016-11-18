@@ -9,7 +9,7 @@ $errors = [];
 $updateAvatar = false;
 $updatePassword = false;
 $mimeTypeAllow = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'];
-$dirUpload = 'uploads/';
+$dirUpload = '../uploads/';
 
 if(!empty($_POST)){
 	$post = array_map('trim', array_map('strip_tags', $_POST)); 
@@ -34,6 +34,7 @@ if(!empty($_POST)){
 	}
 
 	if(isset($_FILES['avatar']) && is_uploaded_file($_FILES['avatar']['tmp_name']) && file_exists($_FILES['avatar']['tmp_name'])){
+
 		$finfo = new finfo();
 		$mimeType = $finfo->file($_FILES['avatar']['tmp_name'], FILEINFO_MIME_TYPE);
 		
@@ -67,7 +68,7 @@ if(!empty($_POST)){
 		}
 
 		if($updateAvatar){
-			$columnSQL.= ', avatar = :avatar'; // variable $updatePassword qui contient les infos concaténés + l'avatar 
+			$columnSQL.= ', avatar = :avatar'; // variable $updateAvatar qui contient les infos concaténés + l'avatar 
 		}
 
 		$update = $bdd->prepare('UPDATE lbb_users SET '.$columnSQL.' WHERE id = :id'); // requete SQl par ID
@@ -124,7 +125,7 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])){ // si l'ID est ok
 						<?=implode('<br>', $errors);?>
 					</div>
 		
-				<?php elseif(isset($success) && $success == true): ?>
+				<?php elseif(isset($formValid) && $formValid == true): ?>
 
 					<div class="alert alert-success">
 						 compte utilisateur Mis à jour !
@@ -137,7 +138,7 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])){ // si l'ID est ok
 
 				<h1 text-center text-info>Modifier un compte utlisateur</h1>
 
-				<form method="post">
+				<form method="post" enctype="multipart/form-data">
 					
 					
 					
@@ -158,7 +159,7 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])){ // si l'ID est ok
 
 					<br><br>
 					<label for="avatar">Avatar</label>
-					<input type="file" name="avatar" id="avatar" value="<?=$user['avatar'];?>" class="input-file" accept="image/*">
+					<input type="file" name="avatar" id="avatar" class="input-file" accept="image/*">
 
 					<br><br>
 					<input type="submit" value="editer les informations" class="btn btn-primary">
