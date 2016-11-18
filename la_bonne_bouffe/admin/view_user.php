@@ -23,8 +23,11 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])){
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	</head>
 	<body>
-		<?php include 'header.php'; ?>
-		<header></header>
+    <?php if (empty($_SESSION)){
+        header('Location: index.php');
+    } ?>
+		
+		<header><?php include 'header.php'; ?></header>
 
 		<main class="container">
 
@@ -49,6 +52,14 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])){
                                     <li>
                                         <strong>Pseudo :</strong>
                                         <?=$user['username'];?>
+                                    </li>
+                                    <li>
+                                        <strong>Nom :</strong>
+                                        <?=$user['firstname'];?>
+                                    </li>
+                                    <li>
+                                        <strong>Prénom :</strong>
+                                        <?=$user['lastname'];?>
                                     </li>
                                     <li>
                                     	<strong>Email :</strong>
