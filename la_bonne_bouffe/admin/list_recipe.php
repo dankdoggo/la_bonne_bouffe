@@ -120,7 +120,7 @@ else {
 					<tr>
 						<td><?= ucfirst($value['title']);?></td>
 						<td><?=$value['date_publish'];?></td>
-						<td><?= ucfirst($value['author']);?></td>
+						<td><?= ucfirst($value['username_author']);?></td>
 						<td>
 							<a href="edit_recipe.php?id=<?=$value['id'];?>"> 
 							<i class="fa fa-pencil"></i> Modifier</a>

@@ -38,6 +38,7 @@ if(isset($_GET['id']) && is_numeric($_GET['id']) && !empty($_GET['id'])){
 	<?php if(empty($recipe)):?>
 		<?php header('Location: 404.php'); ?>
 	<?php else:?>	
+		
 		<section id="section-view-recipe">
 			<h1 class="title-section-list"><?=$recipe['title'];?></h1>
 			<div class="contain-img-list-recipe">
