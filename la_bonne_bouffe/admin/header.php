@@ -26,7 +26,7 @@ require_once '../inc/connect.php';
 
         <nav class="wrapper-header-back">
 
-            <div id="logo">LOGO</div>
+            <div id="logo"><img src="../img/logo-back.png"></div>
 
             <div class="menu-header-back">
                 <ul>

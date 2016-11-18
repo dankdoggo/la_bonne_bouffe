@@ -2,21 +2,28 @@
 	        
 	<header id="header">
 
+
+
 		<div class="bloc-contact">
 		<a href="index.php">
 	  		<div class="titre-contact"><strong>La bonne bouffe</strong></div>
-	  		<div class="info-contact"> De la bouffe de conte de fées </div>
+	  		<div class="info-contact"> Le restaurant qui vous faut </div>
 	  	</a>
 	  	</div>
 
-		<nav></nav>
+		<div class="center-block"><img src="img/logo.png"></div>
 
-		<a href="contact.php">
-			<div class="nous-contacter">
-			<i class="fa fa-envelope-o" aria-hidden="true"></i>
-			&nbsp; Nous contacter
-			</div>
-		</a>
+		<div>
+			<a href="contact.php">
+				<div class="nous-contacter">
+					<i class="fa fa-envelope-o" aria-hidden="true"></i>
+					&nbsp; Nous contacter
+				</div>
+			</a>
+		<div>
 
 	</header>
+
+
+
 </div>
