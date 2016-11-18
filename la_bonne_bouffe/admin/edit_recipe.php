@@ -55,7 +55,7 @@ if(!empty($_POST)){
 	}//fermeture else (si le fichier envoyé est existant)
 
 	if (count($errors) === 0) {
-		$upd=$bdd->prepare('UPDATE SET WHERE ')
+		$upd=$bdd->prepare('UPDATE SET WHERE ');
 
 
 
@@ -64,7 +64,7 @@ if(!empty($_POST)){
 
 
 
-
+}
 
 
 
