@@ -26,7 +26,7 @@
 
 
 
-		<title> Oups...On a pas trouvé ce que vous recherchiez </title>
+		<title> Oups...On a pas trouvé ce que vous recherchez </title>
 
 	 	<!-- Police Google Font -->
 	    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet"> 
@@ -50,7 +50,7 @@
 			<?php include_once 'inc/header.php'; ?>		
 	        
 	        <main class="error_404">
-	        	<p class="error_message">Oups...on a pas trouvé ce que vous recherchiez</p>
+	        	<p class="error_message">Oups...on a pas trouvé ce que vous recherchez</p>
 	        </main>
 
 
